@@ -1,0 +1,2028 @@
+\documentclass[fontsize=10pt, paper=a4,fleqn, ]{wlscirep} 
+\title{Genomic and transcriptomic analysis of the fungi
+  Cladophialophora immunda exposed to toluene}
+\author[1,*,+]{Barbara Blasi}
+\author[1,+]{Hakim Tafer}
+\author[1]{Ksenija Lopandic}
+\author[1]{Katja Sterflinger-Gleixner}
+\affil[1]{Affiliation, department, city, postcode, country}
+\affil[2]{Affiliation, department, city, postcode, country}
+
+\affil[*]{corresponding.author@email.example}
+
+\affil[+]{these authors contributed equally to this work}
+
+%%\usepackage[dvipsnames]{xcolor}  % Allows the definition of hex colors
+%%\usepackage[bottom=10em]{geometry} % Reduces the whitespace at the bottom of the page so more text can fit
+%%%\usepackage{fontspec}
+%%\usepackage[english]{babel} % English language
+%%\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+%%\usepackage[utf8]{inputenc} % Uses the utf8 input encoding
+%%\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+%%
+%%\usepackage[osf]{mathpazo} % Palatino as the main font
+%%\linespread{1.05}\selectfont % Palatino needs some extra spacing, here 5% extra
+%%\usepackage[scaled=.88]{beramono} % Bera-Monospace
+%%\usepackage[scaled=.86]{berasans} % Bera Sans-Serif
+%%\usepackage{listings}
+%%\usepackage{booktabs,array} % Packages for tables
+%%
+%%\usepackage{amsmath} % For typesetting math
+\usepackage{graphicx} % Required for including images
+\usepackage{url}
+\usepackage{color}
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,skins}
+\usepackage{minted}
+\usemintedstyle{native}
+
+\definecolor{mintedbackground}{rgb}{0,0,0}
+\newmintedfile[perlCode]{perl}{
+  formatcom=\color{green},
+  breaklines=true,
+  bgcolor=mintedbackground,
+  fontfamily=tt,
+  linenos=true,
+  numberblanklines=true,
+  numbersep=12pt,
+  numbersep=5pt,
+  gobble=0,
+  frame=leftline,
+  framerule=0.4pt,
+  framesep=2mm,
+  funcnamehighlighting=true,
+  tabsize=4,
+  obeytabs=false,
+  mathescape=false
+  samepage=false, %with this setting you can force the list to appear on
+  %the same page
+  showspaces=false,
+  showtabs =false,
+  texcl=false,
+  fontsize=\footnotesize
+}
+
+\newmintedfile[pythonCode]{python}{
+  formatcom=\color{green},
+  breaklines=true,
+  bgcolor=mintedbackground,
+  fontfamily=tt,
+  linenos=true,
+  numberblanklines=true,
+  numbersep=12pt,
+  numbersep=5pt,
+  gobble=0,
+  frame=leftline,
+  framerule=0.4pt,
+  framesep=2mm,
+  funcnamehighlighting=true,
+  tabsize=4,
+  obeytabs=false,
+  mathescape=false
+  samepage=false, %with this setting you can force the list to appear on
+  %the same page
+  showspaces=false,
+  showtabs =false,
+  texcl=false,
+  fontsize=\footnotesize
+}
+
+\newmintedfile[Rcode]{R}{
+  formatcom=\color{green},
+  breaklines=true,
+  bgcolor=mintedbackground,
+  fontfamily=tt,
+  linenos=true,
+  numberblanklines=true,
+  numbersep=12pt,
+  numbersep=5pt,
+  gobble=0,
+  frame=leftline,
+  framerule=0.4pt,
+  framesep=2mm,
+  funcnamehighlighting=true,
+  tabsize=4,
+  obeytabs=false,
+  mathescape=false
+  samepage=false, %with this setting you can force the list to appear on
+  %the same page
+  showspaces=false,
+  showtabs =false,
+  texcl=false,
+  fontsize=\footnotesize
+}
+
+\newmintedfile[bashCode]{bash}{
+  formatcom=\color{green},
+  breaklines=true,
+  bgcolor=mintedbackground,
+  fontfamily=tt,
+  linenos=true,
+  numberblanklines=true,
+  numbersep=12pt,
+  numbersep=5pt,
+  gobble=0,
+  frame=leftline,
+  framerule=0.4pt,
+  framesep=2mm,
+  funcnamehighlighting=true,
+  tabsize=4,
+  obeytabs=false,
+  mathescape=false
+  samepage=false, %with this setting you can force the list to appear on
+  %the same page
+  showspaces=false,
+  showtabs =false,
+  texcl=true,
+  fontsize=\footnotesize
+}
+
+\newmintedfile[xmlCode]{xml}{
+  formatcom=\color{green},
+  breaklines=true,
+  bgcolor=mintedbackground,
+  fontfamily=tt,
+  linenos=true,
+  numberblanklines=true,
+  numbersep=12pt,
+  numbersep=5pt,
+  gobble=0,
+  frame=leftline,
+  framerule=0.4pt,
+  framesep=2mm,
+  funcnamehighlighting=true,
+  tabsize=4,
+  obeytabs=false,
+  mathescape=false
+  samepage=false, %with this setting you can force the list to appear on
+  %the same page
+  showspaces=false,
+  showtabs =false,
+  texcl=false,
+  fontsize=\footnotesize
+}
+
+
+
+%%Conditional formatting in order to include / exclude code
+%%show code
+\newif\ifcode
+\codefalse
+%%\usepackage{etoolbox}
+%%\usepackage[norule]{footmisc} % Removes the horizontal rule from footnotes
+%%\usepackage{lastpage} % Counts the number of pages of the documen
+%%\usepackage[T1]{fontenc}
+%%\usepackage[]{minted}
+%%\usepackage{tcolorbox}
+%%\usepackage{lineno}
+%%\usepackage{etoolbox}
+%%\definecolor{titleblue}{rgb}{0.16,0.24,0.64} % Custom color for the title on the title page
+%%\definecolor{linkcolor}{rgb}{0,0,0.42} % Custom color for links - dark blue at the moment
+%%\addtokomafont{title}{\Huge\color{titleblue}} % Titles in custom blue color
+%%\addtokomafont{chapter}{\color{OliveGreen}} % Lab dates in olive green
+%%\addtokomafont{section}{\color{Sepia}} % Sections in sepia
+%%\addtokomafont{pagehead}{\normalfont\sffamily\color{gray}} % Header text in gray and sans serif
+%%\addtokomafont{caption}{\footnotesize\itshape} % Small italic font size for captions
+%%\addtokomafont{captionlabel}{\upshape\bfseries} % Bold for caption labels
+%%\addtokomafont{descriptionlabel}{\rmfamily}
+%%\setcapwidth[r]{10cm} % Right align caption text
+%%\setkomafont{footnote}{\sffamily} % Footnotes in sans serif
+%%
+%%\deffootnote[4cm]{4cm}{1em}{\textsuperscript{\thefootnotemark}} % Indent footnotes to line up with text
+%%
+%%\DeclareFixedFont{\textcap}{T1}{phv}{bx}{n}{1.5cm} % Font for main title: Helvetica 1.5 cm
+%%\DeclareFixedFont{\textaut}{T1}{phv}{bx}{n}{0.8cm} % Font for author name: Helvetica 0.8 cm
+%%
+%%\usepackage[nouppercase,headsepline]{scrpage2} % Provides headers and footers configuration
+%%\pagestyle{scrheadings} % Print the headers and footers on all pages
+%%\clearscrheadfoot % Clean old definitions if they exist
+%%
+%%\automark[chapter]{chapter}
+%%\ohead{\headmark} % Prints outer header
+%%
+%%\setlength{\headheight}{25pt} % Makes the header take up a bit of extra space for aesthetics
+%%\setheadsepline{.4pt} % Creates a thin rule under the header
+%%\addtokomafont{headsepline}{\color{lightgray}} % Colors the rule under the header light gray
+%%
+%%\ofoot[\normalfont\normalcolor{\thepage\ |\  \pageref{LastPage}}]{\normalfont\normalcolor{\thepage\ |\  \pageref{LastPage}}} % Creates an outer footer of: "current page | total pages"
+%%
+%%% These lines make it so each new lab day directly follows the previous one i.e. does not start on a new page - comment them out to separate lab days on new pages
+%%\makeatletter
+%%\patchcmd{\addchap}{\if@openright\cleardoublepage\else\clearpage\fi}{\par}{}{}
+%%\makeatother
+%%\renewcommand*{\chapterpagestyle}{scrheadings}
+%%
+%%% These lines make it so every figure and equation in the document is numbered consecutively rather than restarting at 1 for each lab day - comment them out to remove this behavior
+%%\usepackage{chngcntr}
+%%\counterwithout{figure}{labday}
+%%\counterwithout{equation}{labday}
+%%
+%%% Hyperlink configuration
+%%\usepackage[
+%%    pdfauthor={}, % Your name for the author field in the PDF
+%%    pdftitle={Laboratory Journal}, % PDF title
+%%    pdfsubject={}, % PDF subject
+%%    bookmarksopen=true,
+%%    linktocpage=true,
+%%    urlcolor=linkcolor, % Color of URLs
+%%    citecolor=linkcolor, % Color of citations
+%%    linkcolor=linkcolor, % Color of links to other pages/figures
+%%    backref=page,
+%%    pdfpagelabels=true,
+%%    plainpages=false,
+%%    colorlinks=true, % Turn off all coloring by changing this to false
+%%    bookmarks=true,
+%%    pdfview=FitB]{hyperref}
+%%\usepackage[stretch=10]{microtype} % Slightly tweak font spacing for aesthetics
+%%
+%%%Set listings options
+%%
+%%\definecolor{mygreen}{rgb}{0,0.6,0}
+%%\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+%%\definecolor{mymauve}{rgb}{0.58,0,0.82}
+%%
+%%\lstset{
+%%  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+%%  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+%%  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+%%  breaklines=true,                 % sets automatic line breaking
+%%  captionpos=b,                    % sets the caption-position to bottom
+%%  commentstyle=\color{mygreen},    % comment style
+%%  deletekeywords={...},            % if you want to delete keywords from the given language
+%%  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+%%  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+%%  frame=single,                    % adds a frame around the code
+%%  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+%%  keywordstyle=\color{blue},       % keyword style
+%%  language=Python,                 % the language of the code
+%%  morekeywords={*,...},            % if you want to add more keywords to the set
+%%  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+%%  numbersep=5pt,                   % how far the line-numbers are from the code
+%%  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+%%  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+%%  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+%%  showstringspaces=false,          % underline spaces within strings only
+%%  showtabs=false,                  % show tabs within strings adding particular underscores
+%%  stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
+%%  stringstyle=\color{mymauve},     % string literal style
+%%  tabsize=2,                       % sets default tabsize to 2 spaces
+%%  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+%%}
+%%
+%%
+%%
+%%
+%%%\setlength\parindent{0pt} % Uncomment to remove all indentation from paragraphs
+%%
+%%%----------------------------------------------------------------------------------------
+%%%	DEFINITION OF EXPERIMENTS
+%%%----------------------------------------------------------------------------------------
+%%
+%%% Template: \newexperiment{<abbrev>}[<short form>]{<long form>}
+%%% <abbrev> is the reference to use later in the .tex file in \experiment{}, the <short form> is only used in the table of contents and running title - it is optional, <long form> is what is printed in the lab book itself
+%%
+%%\newexperiment{example}[Example experiment]{This is an example experiment}
+%%\newexperiment{example2}[Example experiment 2]{This is another example experiment}
+%%\newexperiment{example3}[Example experiment 3]{This is yet another example experiment}
+%%
+%%\newsubexperiment{subexp_example}[Example sub-experiment]{This is an example sub-experiment}
+%%\newsubexperiment{subexp_example2}[Example sub-experiment 2]{This is another example sub-experiment}
+%%\newsubexperiment{subexp_example3}[Example sub-experiment 3]{This is yet another example sub-experiment}
+%%
+\newcommand{\E}[2]{${#1}\cdot10^{-{#2}}$}
+
+%\newcommand{\textdegree}{$^o$}
+%\newcommand{\textmu}{$\mu$}
+%\newcommand{\textonehalf}{1/2}
+\newcommand{\textlower}{$<$}
+\newcommand{\TODO}[1]{\textbf{\color{red}{#1}}}
+\newcommand{\exoDer}{\textit{Exophiala dermatitidis}}
+\newcommand{\exoMes}{\textit{Exophiala mesophila}}
+\newcommand{\exoSid}{\textit{Exophiala sideris}}
+\newcommand{\exoSpi}{\textit{Exophiala spinifera}}
+\newcommand{\claImm}{\textit{Cladophialophora immunda}}
+\newcommand{\fonPed}{\textit{Fonsacaea pedrosi}}
+\newcommand{\horWer}{\textit{Hortea werneckii}}
+\newcommand{\canAlb}{\textit{Candida albicans}}
+\newcommand{\aspNig}{\textit{Aspergillus niger}}
+\newcommand{\aspNid}{\textit{Aspergillus nidulans}}
+\newcommand{\aspFum}{\textit{Aspergillus fumigatus}}
+\newcommand{\aspRub}{\textit{Aspergillus ruber}}
+\newcommand{\penChr}{\textit{Penicillium chrysogenum}}
+\newcommand{\debFab}{\textit{Debaryomyces fabryi}}
+\newcommand{\debHan}{\textit{Debaryomyces hansenii}}
+\newcommand{\walIch}{\textit{Walemia ichthyophaga}}
+\newcommand{\walMel}{\textit{Walemia mellicola}}
+\newcommand{\canPar}{\textit{Candida parapsilosis}}
+\newcommand{\cocImm}{\textit{Coccidioides immitis}}
+\newcommand{\triRub}{\textit{Trichophyton rubrum}}
+\newcommand{\thiTer}{\textit{Thielavia terrestris}}
+\newcommand{\mycThe}{\textit{Myceliophthora thermophila}}
+\newcommand{\neuCra}{\textit{Neurospora crassa}}
+\newcommand{\sacCer}{\textit{Saccharomyces cerevisiae}}
+\newcommand{\schPom}{\textit{Schizosaccharomyces pombe}}
+\newcommand{\cryNeo}{\textit{Cryptococcus neoformans}}
+\newcommand{\micCan}{\textit{Microsporum canis}}
+\newcommand{\onyCor}{\textit{Onygena corvina}}
+\newcommand{\blaDer}{\textit{Blastomyces dermatitidis}}
+\newcommand{\parBra}{\textit{Paracoccidioides brasiliensis}}
+\newcommand{\cocPos}{\textit{Coccidioides posadasii}}
+\newcommand{\toxGon}{\textit{Toxoplasma gondii}}
+\newcommand{\fusOxy}{\textit{Fusarium oxysporum}}
+\newcommand{\fusSol}{\textit{Fusarium solani}}
+\newcommand{\tryRub}{\textit{Fusarium solani}}
+\newcommand{\clado}{\textit{Cladophialophora}}
+\newcommand{\attspe}{\textit{Attalea speciosa}}
+\newcommand{\claban}{\textit{Cladophialophora bantiana}}
+\newcommand{\clasat}{\textit{Cladophialophora saturnica}}
+\newcommand{\clapsa}{\textit{Cladophialophora psammophila}}
+\newcommand{\clasph}{\textit{Cladosporium sphaerospermum}}
+\newcommand{\claBan}{\textit{Cladophialophora bantiana}}
+\newcommand{\fusGra}{\textit{Fusarium graminearum}}
+\newcommand{\fusSpo}{\textit{Fusarium sporotrichoides}}
+\newcommand{\triAru}{\textit{Trichoderma arundinaceum}}
+\newcommand{\triBre}{\textit{Trichoderma brevicompactum}}
+\newcommand{\phiSp}{\textit{Phialosimplex sp. HF37}}
+\newcommand{\phiScl}{\textit{Phialosimplex sclerolatus}}
+\newcommand{\staCha}{\textit{Stachybotrys chartarum}}
+\newcommand{\staChl}{\textit{Stachybotrys chloronata}}
+\newcommand{\exo}{\textit{Exophiala}}
+\newcommand{\herpo}{\textit{Herpotrichiellaceae}}
+\newcommand{\skin}{skin}
+\newcommand{\tol}{\textit{toluene}}
+\newcommand{\glu}{\textit{glucose}}
+%\newcommand{\textlower}{$<$}
+
+
+
+
+%----------------------------------------------------------------------------------------
+
+\begin{abstract}
+\TODO{200 Words}
+\end{abstract}
+
+\begin{document}
+\flushbottom
+\maketitle
+\thispagestyle{empty}
+\noindent Please note: Abbreviations should be introduced at the first mention in the main text - no abbreviations lists. Suggested structure of main text (not enforced) is provided below.
+\section{Introduction*}
+
+
+%%Compared to bacteria tolerance to dry conditions 
+%%Nevertheless it is an opportunistic human pathogen able to cause and its direct application is at the moment impossible. 
+%%At the molecular level, little is known about this fungus when occupying its ecological niches and further investigations are required
+%%Il tutto conferisce l abilita di colonizzare vertebrates
+%%From the paper Indoor wet cells harbour melanized agents of cutaneous
+%%Infection li an and de hoog 
+%%Exophiala lecanii-corni has been used for biofiltration
+%%and is able to remove toluene from air streams with a very
+%%high elimination capacity [34]. Gunsch et al. [35] proved
+%%that the gene ElHDO (homogentisate-1,2-dioxygenase) was
+%%involved in the fungus’ ability to degradate VOCs. The
+%%species has also been reported from systematic human infections,
+%%e.g., respiratory tract, stomach and intestines, and was
+%%also involved in cutaneous and subcutaneous cases [5].
+
+\section{Method*}
+\subsection{Fungal growth conditions}
+
+\subsection{DNA isolation and Sequencing}
+
+\subsection{Bioinformatics}
+\subsubsection{Genome Annotation}
+The deNovo ncRNAs annotation was done with
+Infernal~\cite{Nawrocki2013} and the Rfam
+database~\cite{Nawrocki2014}, tRNAscan~\cite{Schattner:05} and
+SNOSTRIP~\cite{Bartschat2014}. Overlapping ncRNAs annotations were
+merged manually. 
+
+\TODO{Protein Coding}
+%%Fusion transcripts were detected with the STAR-Fusion pipeline 
+%%~\url{https://github.com/STAR-Fusion/STAR-Fusion} while circular RNAs
+%%were detected by looking directly at the read mapping patterns. In
+%%order to be reported, circular RNAs had to be supported by at least one
+%%split read in two replicates of the same experimental
+%%condition. Fusion transcripts were reported if they appeared in at
+%%least three replicates. 
+
+
+\subsubsection{Comparative Genomics}
+Gene sequences and annotations for \aspNig, \aspNid, \aspFum, \claBan,
+\exoDer, \fusOxy, \fusSol, \neuCra, \sacCer, {\schPom} and {\triRub} were
+fetched from ensembl and ncbi. For {\exoMes}, our own genome assembly
+and annotation were used~\cite{Tafer2015a}.
+\ifcode
+\begin{listing}[h]
+  \perlCode{/media/work/genomes/claImm/comparativeGenomicsAnalysis/biomartWebService.pl}
+  \label{code:fAperl}
+  \caption{Perl used to fetch the protein functional annotation of 6/10 genomes.}
+\end{listing}
+\begin{listing}[h]
+  \xmlCode{/media/work/genomes/claImm/comparativeGenomicsAnalysis/fetch.xml}
+  \label{code:fAxml}
+  \caption{xml used to fetch the protein functional annotation of 6/10 genomes.}
+\end{listing}
+\begin{listing}[h]
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{parallel -j 8 "perl ./biomartWebService.pl -s {} -x fetch.xml > {}.csv" ::: anidulans aniger afumigatus ncrassa scerevisiae spombe}
+  \label{code:fAbash}
+  \caption{shell command used to fetch the protein functional annotation of 6/9 genomes.}
+\end{listing}
+\fi
+
+The protein-coding genes of all studied species were functionally
+annotated with a local install of
+interproscan-5.19-58.0~\cite{Jones2014}. Homologies with   the
+transporter classification database (TCDB)~\cite{Saier2016}, the
+peptidase datavbase (MEROPS)~\cite{Rawlings2014} and the
+carbohydrate-active enzymes database (CAZY)~\cite{Cantarel2009} were
+assessed with blastp~\cite{Altschul:97b}(E-value $<$ 1e-3). Genes
+homology was assessed with
+Proteinortho-5.13~\cite{Lechner2011}. Pairwise generation of the
+chains of synthenic genes for each genomes pair was done with
+DAGchainer~\cite{Haas2004}. Horizontally transfered genes were
+detected with the latest version of HGTFinder
+(2016)~\cite{Nguyen2015}.
+
+
+\ifcode
+\begin{listing}[h]
+    \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize,formatcom=\color{green}]{shell}
+         {
+    snakemake -d `pwd` -s `pwd`/functionalAnnotation.Snakemake --stats
+    snakemake.stats -j 100 --cluster 'qsub {params.cluster}'
+    afumigatus.merops anidulans.merops aniger.merops foxysporum.merops
+    fsolani.merops ncrassa.merops scerevisiae.merops spombe.merops
+    trubrum.merops --printshellcmds}
+  
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize,formatcom=\color{green}]{shell}{
+    snakemake -d `pwd` -s `pwd`/functionalAnnotation.Snakemake --stats
+    snakemake.stats -j 100 --cluster 'qsub {params.cluster}'
+    afumigatus.tsv anidulans.tsv aniger.tsv foxysporum.tsv
+    fsolani.tsv ncrassa.tsv scerevisiae.tsv spombe.tsv
+    trubrum.tsv --printshellcmds}
+  
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize,formatcom=\color{green}]{shell}{
+    snakemake -d `pwd` -s `pwd`/functionalAnnotation.Snakemake --stats
+    snakemake.stats -j 100 --cluster 'qsub {params.cluster}'
+    afumigatus.cazy anidulans.cazy aniger.cazy foxysporum.cazy
+    fsolani.cazy ncrassa.cazy scerevisiae.cazy spombe.cazy
+    trubrum.cazy --printshellcmds}
+
+  \label{code:functional annotation}
+  \caption{command to functionally annotate proteins.}
+\end{listing}
+\fi
+
+
+
+
+%%\ifcode
+%%\begin{listing}[ht]
+%%  \perlCode{./comparativeGenomicsAnalysis/perlRestClient.pl}
+%%  \label{code:restPerl}
+%%  \caption{Perl Rest client used to fetch the protein functional annotation of 3/9 genomes.}
+%%\end{listing}
+%%\begin{listing}[ht]
+%%  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{bash}{
+%%    perl ./perlRestClient.pl -u 'http://rest.ensemblgenomes.org/lookup/genome/Trichophyton_rubrum_cbs_118892?level=protein_feature' > tRubrum.csv
+%%
+%%    perl ./perlRestClient.pl -u 'http://rest.ensemblgenomes.org/lookup/genome/Fusarium_solani?level=protein_feature' > fSolati.csv
+%%
+%%    perl ./perlRestClient.pl -u 'http://rest.ensemblgenomes.org/lookup/genome/Fusarium_oxysporum?level=protein_feature' > fOxysporum.csv
+%%
+%%}
+%%  \label{code:restBash}
+%%  \caption{shell command used to fetch the protein functional
+%%    annotation of 3/9 genomes with the REST client.}
+%%\end{listing}
+%%\fi
+
+
+%%#!We need to do the following in order to set transcript and gene name to the same.
+%%#!After that We will switch to transcript based differential expression
+%%cat claImm.allProteinNewProteinLocus.gtf | perl -lane 'printf join("\t",@F[0..8]); print " ",$F[9]," ",$F[10]," ",$F[9]'
+
+
+%%\subsubsection{Data upload into the genome browser}
+%%A local install of the  genome browser in a box was populated with the
+%%genome sequence, the protein annotation, the lncRNA annotation, the
+%%transcript of unknown function, Rfam, RNAz, RNAcode, tRNA, circular RNAs and the
+%%PHAST score of the conserved regions.
+%%
+%%\ifcode
+%%\begin{listing}[ht]
+%%  \bashCode{/media/work/genomes/claImm/annotation/convertToBB.sh}
+%%  \label{code:uploadAnnotation}
+%%  \caption{command to upload annotation to convert gtf to bb}
+%%\end{listing}
+%%\fi
+
+\section{Results*}
+\subsection{DNA Sequencing of the two \textit{Phialophora} species}
+
+\subsection{Highly Complete Genome and Gene Set}
+The genome assemblies of {\phiSp} and {\phiScl} used for this study
+were seqeunced on the Ion PGM (See Methods). The {\phiSp} genome has a
+size of 21.9Mb and contains a total of 8895 protein-coding
+loci. {\phiScl} has a 27$\%$ larger genome (27.9Mb) with 27$\%$ more
+coding-genes (11307) compared to {\phiSp}.
+\subsection{Genes conservation and gene family evolution}
+The gene conservation pattern between {\phiSp}, {\phiScl} and a set of
+halophilic and halotolerant fungi listed in Table~\ref{tab:species}
+was studied with Proteinortho~\cite{Lechner2011} (See Methods). 
+\begin{table}
+  \begin{center}
+    \small
+    \begin{tabular}{|l|l|p{2cm}|l|p{5cm}|}
+      \hline
+      Species   & Salt concentration & Type & Reference & Osmoadaptation \\
+      \hline
+      {\phiSp}  & 10-30$\%$,\TODO{optimal at 15$\%$} & Halophilic &
+      This publication &\\ 
+      {\phiScl} & 0-10$\%$, optimal at 10$\%$ & Halotolerant & This publication &\\
+      {\aspRub} & $>$10$\%$,  optimal at 18$\%$&  Halophilic
+      &\cite{Kis2014}&       expression of ion transporter, higher
+      proportion of acidic amino acids gene duplication cell wall restructuring
+      Glycerol\\
+      {\penChr} & 0-18$\%$, optimal at 10$\%$ & Halotolerant
+      &\cite{Attaby2001}& Glycerol \\
+      {\horWer} & 0-32$\%$, optimal 3-9$\%$ & Halophile   &
+      \cite{Plemenitas2015}& Polyols accumulation, alkali metal
+      transport , K$^+$/Na$^+$, cell wall restructuring\\
+      {\canPar} & 0-12$\%$, optimal 0 $\%$ & Halotolerant, xerotolerant & \cite{Krauke2010}&\\
+      {\debFab} & 0-16$\%$, optimal 0 $\%$ & Halotolerant &
+      \cite{Michan2013}& Polyols accumulation\\
+      {\debHan} & 0-24$\%$, optimal 0 $\%$ & Halotolerant & \cite{Michan2013}& Polyols accumulation, sodium resistance\\
+      {\sacCer} & 0-8$\%$, optimal 0 $\%$ & Control & \cite{Lages1999}&\\
+      {\schPom} & 0-5$\%$, optimal 0 $\%$ & Control & \cite{Lages1999}&\\
+      {\walIch} & >8 $\%$, optimal 18 $\%$ & Halophile &
+      ~\cite{Zajc2013} & polyols accumulation, transport of alkali metal
+      ions, hydrophobins\\
+      {\walMel} & 0-27$\%$, optimal 0 $\%$ & Halotolerant,
+      xerotolerant & ~\cite{Kuncic2010} & Cell wall thickening\\
+      \hline
+    \end{tabular}
+    \caption{\label{tab:species} List of genomes compared in this
+      study. For each species, the name, salt tolerance, type of
+      tolerance, osmoadaptation and reference are listed}
+    
+  \end{center}
+\end{table}
+
+\ifcode
+#check comparativeGenomics.snakemake
+\end{listing}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% paralogs comparison
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Proteinortho identified 1292 groups of ortholog genes present in all
+12 species, among which 202 represented one-to-one relationships. In
+{\phiSp} this corresponds to 1364 genes. 5819 genes, belonging to 5313
+ortholog groups, were found in {\phiSp} and at least one other specie,
+while 1712 genes were specific to this fungus. Among thos 1712 genes,
+45 had at least 2 paralogues. For {\phiScl} 6929
+genes belonging to 6029 ortholog groups are found in at least one
+other specie, while 3003 genes where species-specific (See
+Figure~\ref{fig:treeEnrichment}). The protein sequences of the 202
+one-to-one ortholog groups  were used to construct the phylogenetic
+tree shown in Figure~\ref{fig:treeEnrichment}. The tree corresponds to
+the expected taxonomy, with {\phiSp} and {\phiScl} clustering and the two
+wallemia species being on another branch than the other 10
+ascomycetes. The functional enrichment of the 22 paralog groups
+specific to {\phiScl}, corresponding to 45 genes, indicates that among
+other integrase (IPR001584, fdr=\E{2.44}{7}), DUF4238 (IPR025332,
+fdr=\E{1.4}{4}), fungal transcription factor (IPR021858,
+fdr=\E{1.75}{4}), DUF2382 (IPR019060, \E{1.79}{4}), DUF2235
+(IPR018712, \E{2.5}{3}) are overreprsented. Table~\ref{tab:over}
+contains a list of overrepresented interproscan (IPR) and gene
+ontology (GO) terms with an fdr$<$0.001.
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{|l|l|l|}
+    \hline
+    Term & FDR & Description\\
+    \hline
+    "IPR001584"&Integrase catalytic core				        &\E{2.44}{7}\\
+    "IPR012337"&Ribonuclease H-like domain				       &\E{1.31}{4}\\
+    "IPR025332"&Protein of unknown function DUF4238			       &\E{1.40}{4}\\
+    "IPR021858"&Protein of unknown function DUF3468			       &\E{1.75}{4}\\
+    "IPR010921"&Trp repressor/replication initiator			       &\E{1.79}{4}\\
+    "IPR019060"&Domain of unknown function DUF2382			       &\E{1.79}{4}\\
+    "IPR025161"&Putative transposase IS4/IS5 family			       &\E{1.79}{4}\\
+    "IPR018712"&Domain of unknown function DUF2235			       &\E{2.51}{4}\\
+    "IPR000525"&Initiator Rep protein					       &\E{2.51}{4}\\
+    "IPR002514"&Transposase IS3/IS911family				       &\E{2.51}{4}\\
+    "IPR004276"&Glycosyltransferase family 28 N-terminal domain		       &\E{3.79}{4}\\
+    "IPR010656"&TRAP C4-dicarboxylate transport system permease DctM subunit    &\E{8.91}{4}\\
+    "IPR002213"&UDP-glucuronosyl/UDP-glucosyltransferase                        &\E{8.91}{4}\\ 
+    \hline
+    GO:0015074 & DNA integration    &\E{4.15}{8}\\
+    GO:0070085 & lipid glycosylation&\E{4.41}{4}\\
+    GP:0032196 & transposition      &\E{4.41}{4}\\
+    \hline
+  \end{tabular}
+    
+  \caption{\label{tab:over} Overrepresented IPR and GO terms in the set
+    of {\phiSp}  specific paralogs with p-value $<$ 0.001. Only the most
+    significant GO terms, in terms of fdr, for each Revigo categories
+   are shown.}
+  \end{center}
+\end{table}
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\linewidth]{./Figure1.pdf}
+  \caption{\label{fig:gainLossTree} Ultrametric tree with estimated
+    divergence time derived from the one-to-one ortholog multiple
+    sequences alignment and the divergence time between {\sacCer} and
+    {\walIch}. Gain and loss of families are represented by barplots
+    in the internal nodes. The \textbf{middle} represent the gain and
+    losses in the leaf nodes. The color correspond to the family
+    category while the shade is proportional to the magnitude in the
+    number of changes. \textbf{r.h.s} The ortholog conservation for
+    all 12  species studied is shown. Core genes, i.e. genes found in
+    all genomes, are shown in dark blue. The number of conserved
+    genes, i.e. genes found in at least two species, is shown in blue,
+    while species specific genes are shown in light-blue.
+  } 
+\end{figure}
+
+
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    cat myproject.proteinortho | perl -lane 'if($F[0]==12 &&
+    ($F[1]==13 || $F[1]==12) && $F[2]==1){print;}'  | grep ,HOR  | sed -r 's/,HOR[^\t]+//g' > oneToOne.csv
+    cat oneToOne.csv | perl ./generateAlignmentInput.pl -d . > oneToOneHomolog.phy 
+    /home/htafer/bin/iqtree-omp-1.4.4-Linux/bin/iqtree-omp -s oneToOneHomolog.phy -m TEST -alrt 1000 -bb 1000 -nt 3
+    #Tree was then created with evolgenius
+  }
+  \label{code:generatePhyloTree}
+  \caption{shell command used to compute phylogenetic tree}
+\end{listing}
+\fi
+
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}
+       {
+         for i in `cat phiSp.merged.tsv | cut -f 4 | sort -u`; do printf "ANN\tIDs\n" > phiSp.ann.$i; grep $i phiSp.merged.tsv | perl -lane 'print $F[4]," ",$F[0]' | sort -k 1,1 -k 2,2 |  sort -u >> phiSp.ann.$i; done
+
+    
+    printf "IDs IEA Gene\n" > phiSp.ann.GO; 
+    grep -P  "((GO:\d+)\|?)+" phiSp.merged.tsv | sed -r "s/^([^\t]+)\t+.+\t((GO:.+\|?)+).+/\1\t\2/" | cut -f 1,2 | sort -u | perl -lane 'foreach $GO (split(/\|/,$F[1])) {print $GO," IEA ",$F[0]};' | sort -k 1,1 -k 3,3 | uniq >> phiSp.ann.GO 
+
+    cat phiSp.merged.tsv | grep ": " | grep -v  GO | sed -r 's/:\s+/:/g' | cut -f 1,15 | perl -lane '@array = split(/\|/,$F[1]); foreach my $GO (@array){print $GO," ",$F[0];}' | sed -r 's/\+[^ ]+/ /' | sort -k 1,1 -k 3,3  | uniq | sed -r 's/:/ /' | sed -r 's/KEGG /KEGG ko/' | sed -r s'/\s+/ /g' > pathways 
+    
+    for i in `cut -f 1 -d  ' ' pathways | sort -u`; do printf "ANN\tIDs\n" > phiSp.ann.${i}; grep ${i} pathways | cut -f 2,3 -d ' '| sort -k 1,1 -k 2,2 | uniq >> phiSp.ann.${i}; done 
+
+    printf "ANN IDs\n" > phiSp.ann.IPR; grep IPR phiSp.merged.tsv | cut -f 1,12 | sort -k 1,1 -k 2,2 | uniq | perl -lane 'printf "$F[1] $F[0]\n"'>> phiSp.ann.IPR
+    
+    }
+  \label{code:productionFileEnrichment}
+  \caption{shell command used to generate the functional enrichment
+    annotation files}
+\end{listing}
+\fi
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    parallel -j 8 'j=`echo {1} | sed -r "s/phiSp.ann.//"`; enrichmentStat.R -b {1} -d ./paralogUniqToPhiSp.list -t $j -D /media/work/share/database/testDictionary.dat ;' ::: phiSp.ann.*
+    
+    cut -f 2,9 -d "#" paralogUniqToPhiSp.list.GO.csv | sed -r 's/\"//g' | sed -r 's/#/ /g' | sed -r 's/,/ /g' > paralogUniqToPhiSp.list.GO.csv.pV
+    
+    for i in *.pV; do 
+     	 j=`echo $i`;
+     	 echo $j;
+     	 revigo.pl -f $i -t BP | sed -r "s/REVIGO Gene Ontology treemap/$j/" | sed -r "s/revigo_treemap.pdf/$j.tableBP.pdf/" > $i.tableBP
+         csplit $i.tableBP /names\(stuff\)/+1  ; cat xx00 > $i.pieBP;
+         cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"$i.pieBP.pdf\"/" >> $i.pieBP;
+         revigo.pl -f $i -t CC | sed -r "s/REVIGO Gene Ontology treemap/$j/" | sed -r "s/revigo_treemap.pdf/$j.tableCC.pdf/" > $i.tableCC;
+     	 csplit $i.tableCC /names\(stuff\)/+1  ; cat xx00 > $i.pieCC;
+         cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"$i.pieCC.pdf\"/" >> $i.pieCC;    
+     	 revigo.pl -f $i -t MF | sed -r "s/REVIGO Gene Ontology treemap/$j/" | sed -r "s/revigo_treemap.pdf/$j.tableMF.pdf/" > $i.tableMF;
+     	 csplit $i.tableMF /names\(stuff\)/+1  ; cat xx00 > $i.pieMF;
+     	 cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"$i.pieMF.pdf\"/" >> $i.pieMF;
+     done;
+     
+          for i in paralogUniqToPhiSp*.table??; do cat -A $i | grep -Po "(\"(G|t)[^^]+)" | sed -r 's/(\(|\)|\"|,$)//g' | sed -r 's/, / /g' | sed -r 's/,/#/g' > $i.summary.csv; done
+
+
+    summarize.pl -s 'paralogUniqToPhiSp.list.(Pfam|Merops|Cazy|GO)' -d . -q /media/work/share/database/materialPalette.csv -P 0.001 -N 2 -r 0 -D '#' > stuff
+    
+    fingerPrint.R -f ./stuff -o test.pdf -c 2 
+    
+  }
+  \label{code:enrichedTerm}
+  \caption{Command used to generate the enriched terms for each
+    annotation catergory and barplot for some select categories}
+\end{listing}
+\fi
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    for i in *.pV; do
+    j=`echo $i`;
+    echo $j
+    revigo.pl -f $i -t BP | sed -r "s/REVIGO Gene Ontology treemap/${j}/" | sed -r "s/revigo_treemap.pdf/${j}.tableBP.pdf/" > $i.tableBP
+    csplit ${i}.tableBP /names\(stuff\)/+1  ; cat xx00 > ${i}.pieBP;
+    cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"${i}.pieBP.pdf\"/" >> ${i}.pieBP; 
+    
+    revigo.pl -f $i -t MF | sed -r "s/REVIGO Gene Ontology treemap/${j}/" | sed -r "s/revigo_treemap.pdf/${j}.tableCC.pdf/" > $i.tableMF
+    csplit ${i}.tableMF /names\(stuff\)/+1  ; cat xx00 > ${i}.pieMF;
+    cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"${i}.pieMF.pdf\"/" >> ${i}.pieMF; 
+
+    revigo.pl -f $i -t CC | sed -r "s/REVIGO Gene Ontology treemap/${j}/" | sed -r "s/revigo_treemap.pdf/${j}.tableMF.pdf/" > $i.tableCC
+    csplit ${i}.tableCC /names\(stuff\)/+1  ; cat xx00 > ${i}.pieCC;
+    cat ~/share/database/pie.chart.R | sed -r "s/FILENAME/\"${i}.pieCC.pdf\"/" >> ${i}.pieCC; 
+    done
+
+    for i in *.table??; do cat -A $i | grep -Po "\"(G|term)[^^]+" | sed -r 's/(\(|\)|\"|,$)//g' | sed -r 's/,/#/g' > $i.summary.csv; done
+  }
+  \label{code:enrichedTerm}
+  \caption{Command used to generate the enriched terms for each
+    annotation catergory and barplot for some select categories}
+\end{listing}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Full genome comparison    
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The enrichment or depletion of functional annotations and 
+in {\phiSp} against the other 12 genomes was studied. Compared to
+{\phiScl}, no gene family is significantly enriched in {\phiSp}. Inversely
+{\phiSp} is significantly depleted in transporters belonging to the
+facilitator superfamily transporters~\TODO{Was seen in bacteria check reference} (IPR020846~\E{1.47}{4}, TCDB
+2.A.1~\E{8.44}{6}),  aminoglycoside phosphotransferase
+(PF01636~\E{1.25}{5},IPR002575~\E{1.47}{4}) and sodium-dependent phosphate
+transporter (PTHR11662~\E{5.30}{3}). 
+
+Compared to {\sacCer} and {\schPom}, {\phiSp} is enriched in three
+families of transporters: MFS (TCDB 2.A.1 \E{7.69}{9}), Fatty acid
+group translocation (TCDB 4.C.1 \E{5.18}{4}) and type IV secretory
+pathways (TCDB 3.A.7 \E{9.33}{3}). Protein domains were enriched among
+others in Cytochrome P450 (IPR001128\E{1.21}{14}), MFS transporters
+(PS50850\E{4.32}{8}), fungal specific transcription factor domain
+(PF11951\E{4.86}{8}), Glycoside hydrolase (IPR017853, \E{6.94}{6}),
+aromatic ring hydroxylase (PR00420,\E{9.66}{6}), short chain
+dehydrogenase (IPR020904\E{9.89}{4}) and glucose-methanol-choline
+oxidoreductase (PF05199 \E{1.87}{3}) \TODO{MICHT BE INVOLVED IN
+    OSMOTOLERANCE}. 
+
+A full list of enriched terms can be found in Supplementary Table S1.
+
+
+The enrichment of interproscan, gene ontology and transporter terms in
+{\phiSp} compared to the each species as well as against the
+halophile, halotolerant and control groups was computed and is
+graphically represented in figure~\ref{fig:speciesEnrichment} and
+Supplementary Table S1. Compared to {\phiScl} and {\penChr}, the
+halophile {\phiSp} is depleted in genes belonging to the major
+facilitator superfamily (MFS), which facilitate the transport of small
+solutes, (TCDB:2A1, IPR011701, IPR020846), but is enriched compared to {\sacCer}
+and {\schPom}. A similar enrichment/depletion pattern is seen for
+terms related to the regulation of transcription (GO:0006355, GO:0000981,
+IPR001138) where {\phiSp} is depleted compared to {\aspRub} and
+{\penChr} but enriched compared to {\horWer}. {\phiScl} is enriched in
+terms related to oxidation-reduction and hydrolase compared to the studied
+saccharomycetales, {\schPom} and the two \textit{Wallemia} species
+(GO:055114, IPR001128, IPR002401, GO:0004353, IPR029058).
+{\phiSp} is also depleted in protein kinase (IPR011009) and
+transcription factors (IPR001138,fdr=\E{}{}) when compared to
+{\phiScl} and {\penChr}, something that is also seen when
+comparing halophile and halotolerant species(\E{3.13}{5}).
+
+Halophile and Halotolerant fungi are enriched in genes related to
+transmembrane transport (IPR020846), oxidoreductase (IPR001128),
+NAD(P)-binding domain (IPR016040), fungal transcription factor
+(IPR007219), dehydrogenase (IPR002347) ad glucose-methanol-choline
+oxidoreductes (IPR000172, IPR007867). They are depleted in genes
+related to integrase (IPR001584), reverse transcriptase (IPR013103)
+and aspartic peptidase (IPR001969).
+
+
+
+
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.8\linewidth,angle=90]{./dataMatrixGOIPTC.pdf}
+  \caption{\label{fig:speciesEnrichment} 
+    Functional enrichment of {\phiSp} vs. all other genomes, the
+    control, halophile and halotolerant groups of
+    species. Halotolerant vs Halophile, Halophile vs Control and
+    Halophile vs Halotolerant are also represented. The blue squares
+    represent underrepresented categories in the reference genome,
+    while the green squares represent overrepresented categories. The
+    shades are proportional to $-log_{10}(fdr)$ for the overrepresented
+    and $log_{10}(fdr)$ for the underrepresented categories.
+  } 
+\end{figure}
+
+
+
+
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #in /media/work/genomes/phiSp/comparativeGenomics/proteinOrtho
+    #Generate over under representation data for phiSp vs halophile and halotolerant
+    parallel -j 8 "perl ./getOverUnderFuncAnno2.pl -d . -s {1} -b {2}"
+    ::: phiSp ::: phiScl aspRub penChr horWer canPar debFab debHan
+    sacCer schPom walIch walMel aspRub,horWer,walIch
+    phiScl,penChr,canPar,debFab,debHan,walMel sacCer,schPom
+    
+    #Do the same for halotolerant, halophile 
+    perl ./getOverUnderFuncAnno2.pl -d . -s phiSp,aspRub,horWer,walIch
+    -b phiScl,penChr,canPar,debFab,debHan,walMel 
+    perl ./getOverUnderFuncAnno2.pl -d . -s phiSp,aspRub,horWer,walIch -b  sacCer,schPom
+    perl ./getOverUnderFuncAnno2.pl -d . -s phiScl,penChr,canPar,debFab,debHan,walMel -b  sacCer,schPom 
+    
+    #Generate the datamatrix
+    for i in `ls *_*.*.csv | grep -vP "(GO|interproscan)" | cut -f 2 -d
+    "." | sort -u`; do perl ./matrixPlotComparativeAnnotation.pl -l
+    phiSp_phiScl.$i.csv,phiSp_aspRub.$i.csv,phiSp_penChr.$i.csv,phiSp_horWer.$i.csv,phiSp_canPar.$i.csv,phiSp_debFab.$i.csv,phiSp_debHan.$i.csv,phiSp_sacCer.$i.csv,phiSp_schPom.$i.csv,phiSp_walIch.$i.csv,phiSp_walMel.$i.csv,phiSp_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv,phiSp_sacCerschPom.$i.csv,phiSp_aspRubhorWerwalIch.$i.csv,phiSclpenChrcanPardebFabdebHanwalMel_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv
+    -d 1 -t 1e-5 > dataMatrix.$i.csv; done 
+    
+    #For interproscan
+    for i in `ls *_*.interproscan.csv | cut -f 2 -d "." | sort -u`; do
+    perl ./matrixPlotComparativeAnnotation.pl -l
+    phiSp_phiScl.$i.csv,phiSp_aspRub.$i.csv,phiSp_penChr.$i.csv,phiSp_horWer.$i.csv,phiSp_canPar.$i.csv,phiSp_debFab.$i.csv,phiSp_debHan.$i.csv,phiSp_sacCer.$i.csv,phiSp_schPom.$i.csv,phiSp_walIch.$i.csv,phiSp_walMel.$i.csv,phiSp_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv,phiSp_sacCerschPom.$i.csv,phiSp_aspRubhorWerwalIch.$i.csv,phiSclpenChrcanPardebFabdebHanwalMel_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv
+    -d 1 -t 1e-5 -p /media/work/share/database/InterproscanDictionary.dat > dataMatrix.$i.csv; done 
+
+    #For GO
+    for i in `ls *_*.GO.csv | cut -f 2 -d "." | sort -u`; do  perl
+    ./matrixPlotComparativeAnnotation.pl -l
+    phiSp_phiScl.$i.csv,phiSp_aspRub.$i.csv,phiSp_penChr.$i.csv,phiSp_horWer.$i.csv,phiSp_canPar.$i.csv,phiSp_debFab.$i.csv,phiSp_debHan.$i.csv,phiSp_sacCer.$i.csv,phiSp_schPom.$i.csv,phiSp_walIch.$i.csv,phiSp_walMel.$i.csv,phiSp_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv,phiSp_sacCerschPom.$i.csv,phiSp_aspRubhorWerwalIch.$i.csv,phiSclpenChrcanPardebFabdebHanwalMel_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv
+    -d 1 -t 1e-5 > dataMatri x.$i.csv; done
+
+    cut -f 1 dataMatrix.GO.csv | sed -r 's/"//g' > GOList
+    Rscript ./clusterGOTerms.R -f GOList -o phiSpGOListClustered
+
+    for i in `ls *_*.GO.csv | cut -f 2 -d "." | sort -u`; do  perl
+    ./matrixPlotComparativeAnnotation.pl -l
+    phiSp_phiScl.$i.csv,phiSp_aspRub.$i.csv,phiSp_penChr.$i.csv,phiSp_horWer.$i.csv,phiSp_canPar.$i.csv,phiSp_debFab.$i.csv,phiSp_debHan.$i.csv,phiSp_sacCer.$i.csv,phiSp_schPom.$i.csv,phiSp_walIch.$i.csv,phiSp_walMel.$i.csv,phiSp_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv,phiSp_sacCerschPom.$i.csv,phiSp_aspRubhorWerwalIch.$i.csv,phiSclpenChrcanPardebFabdebHanwalMel_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_sacCerschPom.$i.csv,phiSpaspRubhorWerwalIch_phiSclpenChrcanPardebFabdebHanwalMel.$i.csv
+    -d 1 -t 1e-5 -p ./phiSpGOListClustered > dataMatrix.$i.csv; done 
+    
+    #Generate R plots
+    for i in dataMatrix*; do Rscript ./plotMatrixEnrichment.R -f $i -o $i.svg; done
+  }
+  \label{code:countTotalParalog}
+  \caption{shell command used to compute {\claImm} paralog and unique paralog.}
+\end{listing}
+\fi
+
+
+%AA comparison
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    
+  \label{code:AAComparison}
+  \caption{Command used to generate the rooted tree}
+\end{listing}
+\fi
+
+\TODO{AA analysis with correlation analysis, apply correlation
+  analysis to eggnog annotation and IPR}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%CAFE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+CAFE was used to estimate the number of families that underwent
+significant contraction and expansion along the
+phylogenetic tree derived from the multiple sequence alignment.
+The families were taken from the Cazy, COG, GO, IPR, Merops, Pfam and
+tcdb annotations. Of all 12 genomes, {\phiSp} has the largest number of family
+contractions in each annotation categories. On the other hand
+{\phiScl}, {\penChr} and {\horWer} exhibit the highest number of
+expansions. Still in the case of {\horWer} the expansions are probably due
+to the recent genome duplication. 
+
+The families of rapidly evolving members in {\phiSp} were studied. GO
+terms related to amino acid transmembrane transport (GO:000333,-9),
+response to oxidative stress  (GO:0006979, -4) and nucleoside
+metabolism (GO:0009116, -6) were shrinking. Interestingly amino acid
+transmembrane transport is also significantly shrinking in the two
+other halophiles, but not in the other genomes. 
+
+The analysis of TCDB families shows that the
+Acid-Polyamine-Organocation (APC) (2.A.3) Family is shrinking in
+{\phiSp} and {\aspRub} by 12 and 11 genes, further indicating that the
+number of amino acid transporters are decreasing in
+halophiles. Interestingly, the Ssy5 peptidase  family (S64) grew by
+two members in {\phiSp}. In {\sacCer} this protein is part of a plasma
+membrane sensor able to detect the presence of extracellular amino
+acid and triggers the signalling pathway leading to induction of an
+amino acid permease~\cite{abdel2004}. The iron/lead transporter
+(2.A.108 -7), the transient receptor potential Ca$^{2+}$ channel
+family (1.A.4 -6), the oligopeptide transporter family (2.A.67 -5) and
+aquaporins (1.A.8 -3) are all shrinking in {\phiSp}. Tripartite
+ATP-independent periplasmic transporter grew by 7 members, i.e. TRAP-T
+(2.A.56, IPR010656) in {\phiSp}. In \textit{Halomonas   elongata},
+TRAP-T  is responsible for the uptake of the compatible solutes
+ectoine and hydroxyectoine~\cite{Grammann2002}. {\phiScl} shows an
+increase in 2.A.3 (+22) and 3.A.9 (+10) and a strong decrease in H+ or
+Na+-translocating NADH Dehydrogenase Family 3.D.1 (-14). A similar
+analysis in {\walIch} indicates that the interproscan family with the
+largest increase is IPR001338, i.e. Hydrophobins a major contributor
+to the {\walIch} halophilism. 
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    for i in aspRub canPar debFab debHan horWer penChr phiSp phiScl
+    sacCer schPom walIch walMel; do printf $i"#####\n"; cat
+    tcdbCAFE.csv.small.results.cafe.report_fams.txt | grep $i | grep
+    -Po "[A-Z0-9:]+\[(\+|-)\d+\*\]" | sed -r 's/([\[|\]|\*])/ /g' |
+    sort -k 2,2gr  | perl -lane 'if(abs($F[1])>0) {print;}' | perl
+    -lane 'print; printf `grep  $F[0]
+    /media/work/share/database/InterProscanDictionary.dat`' | paste -
+    - | sort -k 2,2; done
+\end{listing}
+\fi
+
+There are 19 rapidly evolving COG families in {\phiSp}. Two growing
+families 0PYD1 (+7) and 0PRTC (+3) have no known functions. Other
+growing families were related to Methyltransferase 0PUVA (+5), 0PG34
+Cytochrome P450 (+3), 0PFE6 MFS-multidrug transporter (+3), 0PP11 Ribose
+5-phosphate isomerase (+2) and secretory lipase 0PG8W (+2). The MFS
+toxin-efflux-pump 0QE2U (-2), carobydrate transporter 0PFF2 (-2) and oligopeptide
+transporter 0PFPV (-3) are contracting. 
+
+Analysis of the depleted interproscan families show that Major
+facilitator superfamily (IPR011701 -85), Zn(2)-C6 fungal-type
+DNA-binding domain (IPR001138 -76), the NAD(P)-binding\_domain
+IPR016040 (-67), Transcription factor domain IPR007219 (-53), Protein
+kinases domain IPR011009 (-51), Cytochrome P450 IPR001128 (-16) are
+under pressure. Members of IPR011009 are also strongly depleted in
+{\aspRub} (-50) and to a lesser extent in {\canPar} (-16) and
+{\debFab} (-13). On the other hand two families were growing during
+{\phiSp} evolution: IPR000254 (+6), the fungal cellulose binding
+domain family and the TRAP transport system (IPR010656, +7), which is
+responsible for uptake of compatible solutes. 
+
+Carbohydrate-active enzyme in {\phiSp} are shrinking. Three auxiliary
+enzymes (AA) family  AA1 (multi-copper oxidase), AA2 (lignin modifying
+oxidase) and AA3 (glucose-methanol-choline peroxidase) lose 20, 7 and 5 members
+respectively. Similarly {\aspRub} lost 6 members of the AA2
+family. Glycoside hydrolase (GH) families GH28 (-12), GH43(-7), GH0
+(-6), GH78 (-21) and Carbohydrate esterase (CE) CE0(-6) and CE14
+(-11). 
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #PREPARE TREE
+    library("ape")
+    library("phytools")
+    phy<-read.tree(file="../old/oneToOneHomolog.phy.contree")
+    #Put the midpoint in the middle of the tree.
+    phy2<-ladderize(midpoint.root(phy))
+    write.tree(phy2,file="./rootedTree.tree")
+    #add time + ultrametric
+    python ~/bin/CAFE/python_scripts/cafetutorial_prep_r8s.py -i ./rootedTree.tree  -o test  -s 61283 -p '(S.cerevisiae,W.Mellicola)' -c '621'  
+    ~/bin/r8s -b -f test > test2.txt
+    tail -n 1 test2.txt | cut -f 16- > test_ultrametric.txt
+    #In case iaembe appears, remove it
+    #PREPARE DATA. 
+    
+    
+    #COG DATA
+    
+    for i in *emapper.annotations; do cut -f 10 $i | grep -v "#" | cut -f 1 -d "|" | sort | uniq -c > CAFE/$i.count; done
+
+    cut -f 10 *.annotations | cut -f 1 -d  "|" | grep -v "#" | sort -u > CAFE/listOFCOG 
+    
+    cat listOFCOG | xargs -I {}  sh -c 'printf {}"\t";grep -c {} *.annotations.count' | paste - - - - - - - - - - - - | sed -r 's/[a-z][^:]+//g' | sed -r 's/://g' > COG_data.tab 
+    mv COG_data.tab COGCAFE.csv
+    #OTHER DATA
+    perl ./convertFAToCafe.pl -d .. -s aspRub,canPar,debFab,debHan,horWer,penChr,phiScl,phiSp,sacCer,schPom,walIch,walMel
+    #For each 
+    #filter family with more than 100 elements 
+    for i in *CAFE.csv; do cat $i | perl -lane 'my $max = (sort {$b <=> $a} @F[2..$#F])[0];if($max>100 || $F[1]=~/FAMILY/){print;}' > $i.large;done
+    for i in *CAFE.csv; do cat $i | perl -lane 'my $max = (sort {$b <=> $a} @F[2..$#F])[0];if($max<100 || $F[1]=~/FAMILY/){print;}' > $i.small;done
+    
+    #Train on sm1all and apply on big
+    for i in {Cazy,Merops,interproscan,GO,tcdb,Pfam,COG}CAFE.csv.small; do
+    echo "load -i $i -t 8 -l $i.log" > $i.cf
+    echo "tree ((((((phiScl:60.617324,phiSp:60.617324):40.456106,aspRub:101.073430):28.880877,penChr:129.954307):171.714012,horWer:301.668319):270.062776,(((debFab:23.857217,debHan:23.857217):146.863667,canPar:170.720885):158.567076,sacCer:329.287961):242.443134):49.268905,((walMel:82.636765,walIch:82.636765):510.880936,schPom:593.517701):27.482299)" >> $i.cf
+    echo "lambda -s -t  ((((((1,1)1,1)1,1)1,2)1,(((1,1)1,1)1,1)1)1,((1,1)1,1)1)" >> $i.cf
+    echo "report $i.results" >> $i.cf
+    done
+    
+
+    for i in {Cazy,Merops,interproscan,GO,tcdb,Pfam,COG}CAFE.csv.large; do
+    echo "load -i $i -t 8 -l $i.log" > $i.cf
+    echo "tree ((((((phiScl:60.617324,phiSp:60.617324):40.456106,aspRub:101.073430):28.880877,penChr:129.954307):171.714012,horWer:301.668319):270.062776,(((debFab:23.857217,debHan:23.857217):146.863667,canPar:170.720885):158.567076,sacCer:329.287961):242.443134):49.268905,((walMel:82.636765,walIch:82.636765):510.880936,schPom:593.517701):27.482299)" >> $i.cf
+    printf  "lambda -t ((((((1,1)1,1)1,1)1,1)1,(((1,1)1,1)1,1)1)1,((1,1)1,1)1) -l " >> $i.cf
+    j=`echo $i | sed -r 's/large/small/g'`
+    printf $j
+    tail $j.log | grep -P "^Lambda" | cut -f 3 -d " " | tail -n 1 | sed -r 's/,/ /g' >> $i.cf
+    echo "report $i.results" >> $i.cf
+    done
+    #results summary
+    python ~/bin/CAFE/python_scripts/cafetutorial_report_analysis.py -i smallCOG.multipleLambda.cafe -o smallCOG.multipleLambda.summary
+    #Plot results in R
+  \label{code:CAFE}
+  \caption{Command used to generate the rooted tree}
+\end{listing}
+\fi
+
+
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    perl ./getOverUnderFuncAnno2.pl -d . -s phiSp -b sacCer,schPom
+    perl ../summarizeFuncAnno.pl -C Light_Blue,Light_Green -p  /media/work/share/database/materialPalette.csv~  -d . -s "phiSp_sacCerschPom.(Pfam|Merops|Cazy)" -F 1  -P 1e-3 -S 0.2 >
+    overRepresented && fingerPrint.R -f overRepresented -c 1
+    perl ../summarizeFuncAnno.pl -C Light_Blue,Light_Green -p  /media/work/share/database/materialPalette.csv~  -d . -s "phiSp_phiScl.(Pfam|Merops|Cazy)" -F 0  -P 1e-3 -S 0.2 >
+    underRepresented && fingerPrint.R -f underRepresented -c 1 
+  }
+  \label{code:enrichedTerm}
+  \caption{Command used to generate the enriched terms for each
+    annotation catergory and barplot for some select categories}
+\end{listing}
+\fi
+
+%MATRIX PLOT
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    parallel -j 8 "perl ./getOverUnderFuncAnno2.pl -d . -s {1} -b {2}" ::: phiSp ::: phiScl aspRub penChr horWer canPar debFab debHan sacCer schPom walIch walMel
+    #We only look at IPR at the beginning
+    
+  }
+  \label{code:matrixPlot}
+  \caption{Command used to generate the enriched terms for each
+    annotation catergory and barplot for some select categories}
+\end{listing}
+\fi
+
+
+
+
+
+\subsection{Horizontal Gene Transfer}
+HGTFinder~\cite{Nguyen2015} was used to look for horizontally transferred
+bacterial genes. 76 genes in {\phiSp} were found to be horizontally transfered
+with a q-value of transfer $<0.05$ (See Supplementary Table 1). Among
+them 65 are partial proteins and 11 are complete genes. Among those
+11 genes, 4 have protein domains not found in any other genes in
+{\phiSp}: PHISP\_08405 has a Ribbon-helix-helix domain, PHISP\_08807
+is a gluconate transporter, PHISP\_08812 an urea transporter and
+PHISP\_08441 is a transposase. 
+
+Functional enrichment analysis of all horizontally transferred genes
+indicates that genes related to cation efflux (IPR027469\E{4.1}{3},
+tcdb:2A4\E{1.8}{3}), ABC transporter (tcdb:3A1 \E{2.0}{5}), Transposase
+(IPR004291 0.012, IPR002514 0.012), TRAP-C4-dicarboxylate transport
+(IPR010656 0.028) and nucleoside triphosphate hydrolase (IPR27417 0.028)
+(See Table~\ref{tab:HGTEnrichment}). Genes related to The tellurium
+ion resistance   (2.A.109, PHISP\_08523), malonate symporter
+(2.A.70, PHISP\_08837),   monovalent cation/proton antiporter family
+(2.A.63, PHISP\_08638) are only found among the set of horizontally
+transferred genes. Gene ontology relative to DNA recombination and ion
+transfer are overrepresented but not significantly (0.05 $<$ q-value $<$
+0.1) (See Supplementary Table S1).
+
+We look at the distance tree of 100 closest Blastp results against nr
+of three horizontally transferred transporters. Homologues of
+PHISP\_08463 and PHISP\_08184, a  proton pump and a cation efflux
+protein are mainly located in the class of $\alpha$-proteobacteria,
+while PHISP\_08633, an ABC transporter, has homologues mainly in the
+class of green algae Mamiellophycae (Figure~\ref{fig:treeHGT}).
+
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\linewidth]{./treeHGT.pdf}
+  \caption{\label{fig:treeHGT} BLA
+  } 
+\end{figure}
+
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #selfblast
+     blastp -db ./phiSp.faa -query phiSp.faa -evalue 1e-3 -outfmt 6
+     #blast against nr
+     for i in x??; do echo ``blastp -db nr -query $i -evalue 1e-3 -outfmt 6  -num_threads 16 > $i.blast.nr `` | qsub -V -cwd; done
+     #retain all genes that are in nr.tax
+     cat ~/bin/HGTFinder/nr.tax | cut -f 2 -d ``|'' | fgrep -wf - phiSpVsNr.res  > phiSpVsNrOverlapp.res
+    #Apply HGTFinder
+     ./HGTFinder -d /global/lv70539/htafer/horizontalGeneTransfer/phiSpVsNrOverlapp.res -s /global/lv70539/htafer/horizontalGeneTransfer/phiSp.self.blast     -t 569365  -r 0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9 -o test > log
+     #We get phiSp putativeHGT
+  }
+  \label{code:HGTFinder predictions}
+  \caption{HGTFinder commands}
+\end{listing}
+\fi
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #Check which transfererd gens is complete
+    cat putativeHGT | fgrep -wf -  ../../phiSp.oneLine.faa  -A 1 | grep -P "^M.+\*$" -B 1 | grep -Po  "PHISP\_\d+" | sort -u > putativeHGT.complete
+    #Compute enrichment for the set of complete sequences putatively transferred
+    parallel -j 8 'j=`echo {} | sed -r "s/phiSp.ann.//"`; enrichmentStat.R -b {} -d putativeHGT.complete -t $j -D /media/htafer/work/share/database/InterProscanDictionary.dat;' ::: phiSp.ann.*
+  }
+  \label{code:HGTFinder analysis}
+  \caption{HGTFinder commands}
+\end{listing}
+\fi
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #Blast Get results from ncb
+    curl -f
+    "https://blast.ncbi.nlm.nih.gov/Blast.cgi?RESULTS_FILE=on&RID=UDYDGJWN016&FORMAT_TYPE=CSV&FORMAT_OBJECT=Alignment&DESCRIPTIONS=100&ALIGNMENT_VIEW=Tabular&CMD=Get"
+    > blastHitReport.csv
+    cat blastHitReport.csv  | cut -f 2 -d "," | cut -f 4 -d "|" | sort
+    -u > ids
+    #Taxonomy
+    cat ids | split -l 100 | parallel -j 20 "perl ~/bin/testEUtils.pl  < {} > {}.res" ::: x??
+    #
+    parallel -j 20 "perl ~/bin/testEUtils.pl < {} > {}.res" ::: x??
+    #
+    for i in `cat ids`; do grep -w $i  seqTax.csv | head -n1 ; done >
+    seqTax.csv.final
+    cut -f 1 blastHitReport.csv -d , | cut -f 2 -d "." | sort -u | fgrep -wf - ../../../phiSp/phiSpSingleLine.faa  -A 1 | grep -v "\--" | cut -f 1 -d " " | perl -lane 'if($F[0]=~/^>/){printf; printf " Eurotiomycetes Aspergillaceae Eurotiales  Ascomycota "}else{print $F[0]}' | cut -f 2- -d "." >> seqTax.csv.final
+    #Get Sequence for each alignment
+    for i in `cut -f 1 blastHitReport.csv -d "," | cut -f 2 -d "." | sort -u`; do grep $i blastHitReport.csv | cut -f 2 -d "," | cut -f 4 -d "|"  | sort -u | fgrep -wf - seqTax.csv.final | sed -r 's/\*//g' | perl -lane 'printf ">$F[0]\n$F[5]\n"' > $i.temp && grep $i seqTax.csv.final | sed -r 's/\*//g' | perl -lane 'printf ">$F[0]\n$F[5]\n"' >> $i.temp ; done
+    #Generate Alignment
+    parallel -j 8 " muscle -in {} -out  {}.phy" ::: *.temp
+    #Generate Tree
+    for i in *.temp.phy ; do FastTreeMP $i > $i.tree; done
+    #Paint Tree
+    Rscript ./colorTree.R -t seqTax.csv.final -T ./PHISP\_o08463.temp.phy.tree -d class
+
+  }
+  \label{code:HGTFinder Tree plots}
+  \caption{HGTFinder commands}
+\end{listing}
+\fi
+
+\subsection{Amino Acid bias}
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+    #Generate Data
+    ################################################################################
+    #Amino acid protein ortho analysis
+    ################################################################################
+    
+    #For each gene in genelist, extract sequence count aa and print results.
+    for i in `seq 1 12`; do species=`head -n $i speciesList.csv  | tail -n 1`; export SPECIES=$species; cut -f 4- geneList.csv | cut -f $i | cut -f 1 -d "," | xargs -I {} sh -c 'grep -A 1 {} allClean.FAA | grep -v ">" > ./string ; length=`grep -Po [A-Z] string | wc -l`; export LENGTH=$length;  for k in `cat AAlist`; do  printf $k"\t"$SPECIES"\t"$LENGTH"\t"; grep $k -o ./string | grep -c $k   ; done  '  ; done > aaCountPerGene.csv
+    #Now process it into R
+    
+    ################################################################################
+    #Amino acid secreted proteins
+    ################################################################################
+    
+    for i in *.SPRES; do cat $i | grep -P "\sY\s" | grep -v "\-TM" | cut -f 1 -d " " | cut -f 2 -d "." > $i.secreted.id; done
+    
+    
+    for i in *.id; do export SPECIES=`echo $i | cut -f 1 -d "."`; cat $i | xargs -I {} sh -c 'grep -A 1 {} allClean.FAA | grep -v ">" > ./string ; length=`grep -Po [A-Z] string | wc -l`; export LENGTH=$length; for k in `cat AAlist`; do printf $k"\t"$SPECIES"\t"$LENGTH"\t";   grep $k -o ./string | grep -c $k   ; done  '  ; done >> aaCountPerGeneSecreted.csvaaC	
+
+
+    #Analysis Data
+    ################################################################################
+	#Proteinortho AA analysis
+	
+	library(ggplot2)
+	library(ggsci)
+	library(grid)
+	library(gridExtra)
+	
+	# Multiple plot function
+	#
+	# ggplot objects can be passed in ..., or to plotlist (as a list of ggplot objects)
+	# - cols:   Number of columns in layout
+	# - layout: A matrix specifying the layout. If present, 'cols' is ignored.
+	#
+	# If the layout is something like matrix(c(1,2,3,3), nrow=2, byrow=TRUE),
+	# then plot 1 will go in the upper left, 2 will go in the upper right, and
+	# 3 will go all the way across the bottom.
+	#
+	multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+	    library(grid)
+	    
+	                                        # Make a list from the ... arguments and plotlist
+	    plots <- c(list(...), plotlist)
+	    
+	    numPlots = length(plots)
+	    
+	                                        # If layout is NULL, then use 'cols' to determine layout
+	    if (is.null(layout)) {
+	                                        # Make the panel
+	                                        # ncol: Number of columns of plots
+	                                        # nrow: Number of rows needed, calculated from # of cols
+	        layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+	                         ncol = cols, nrow = ceiling(numPlots/cols))
+	    }
+	    
+	    if (numPlots==1) {
+	        print(plots[[1]])
+	        
+	    } else {
+	                                        # Set up the page
+	        grid.newpage()
+	        pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+	        
+	                                        # Make each plot, in the correct location
+	        for (i in 1:numPlots) {
+	                                        # Get the i,j matrix positions of the regions that contain this subplot
+	            matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+	            
+	    #        print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+	    #                                        layout.pos.col = matchidx$col))
+	        }
+	    }
+	}
+	
+	
+	
+	
+	
+	
+	
+	dataProteinOrtho<-read.table("./aaCountPerGene.csv", header=T)
+	dataProteinOrtho$CC="ProteinOrtho"
+	dataProteinOrtho$prop<-dataProteinOrtho$Count/dataProteinOrtho$gL
+	dataProteinOrtho$type<-factor(dataProteinOrtho$type,levels=c("ct","ht","hp"),ordered=T)
+	dataSecreted<-read.table("./aaCountPerGeneSecreted.csv", header=T)
+	dataSecreted$CC="Secreted"
+	dataSecreted$prop<-dataSecreted$Count/dataSecreted$gL
+	dataSecreted$type<-factor(dataSecreted$type,levels=c("ct","ht","hp"),ordered=T)
+	
+	#merge The data
+	data<-rbind(dataProteinOrtho,dataSecreted)
+	#data$prop<-data$Count/data$gL
+	data$type<-factor(data$type,levels=c("ct","ht","hp"),ordered=T)
+	
+	ggplot(data, aes(AA, prop))+geom_boxplot(aes(colour=type))+facet_wrap(~CC)
+	
+	aa=NULL
+	cthtpv=NULL
+	hthppv=NULL
+	cthppv=NULL
+	
+	cthtks=NULL
+	hthpks=NULL
+	cthpks=NULL
+	wtest=NULL
+	CC=NULL
+	for (i in as.vector(unique(data["AA"])[,1])){
+	    aa=append(aa,i)
+	
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ct"& data$CC=="ProteinOrtho"], data$prop[data$AA==i & data$type=="ht"& data$CC=="ProteinOrtho"])
+	    cthtpv=append(cthtpv,temp$p.value)
+	    cthtks=append(cthtks,temp$statistic)
+	    
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ht"& data$CC=="ProteinOrtho"], data$prop[data$AA==i & data$type=="hp"& data$CC=="ProteinOrtho"])
+	    hthppv=append(hthppv,temp$p.value)
+	    hthpks=append(hthpks,temp$statistic)
+	
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ct"& data$CC=="ProteinOrtho"], data$prop[data$AA==i & data$type=="hp"& data$CC=="ProteinOrtho"])
+	    cthppv=append(cthppv,temp$p.value)
+	    cthpks=append(cthpks,temp$statistic)
+	
+	
+	
+	    CC=append(CC,"ProteinOrtho")
+	    aa=append(aa,i)
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ct"& data$CC=="Secreted"], data$prop[data$AA==i & data$type=="ht"& data$CC=="Secreted"])
+	    cthtpv=append(cthtpv,temp$p.value)
+	    cthtks=append(cthtks,temp$statistic)
+	    
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ht"& data$CC=="Secreted"], data$prop[data$AA==i & data$type=="hp"& data$CC=="Secreted"])
+	    hthppv=append(hthppv,temp$p.value)
+	    hthpks=append(hthpks,temp$statistic)
+	    
+	    temp=ks.test(data$prop[data[["AA"]]==i & data$type=="ct"& data$CC=="Secreted"], data$prop[data$AA==i & data$type=="hp"& data$CC=="Secreted"])
+	    cthppv=append(cthppv,temp$p.value)
+	    cthpks=append(cthpks,temp$statistic)
+	    CC=append(CC,"Secreted")
+	}
+	#wtest=rbind(wtest,data.frame(i,ctht,hthp,cthp,CC))
+	
+	#Here we store the statistics
+	wtest = data.frame(aa,cthtpv,hthppv,cthppv,cthtks,hthpks,cthpks,CC)
+	
+	#interesting <- wtest[wtest$ctht > wtest$cthp & wtest[,2] < quantile(wtest[,2])[3] &  wtest[,3] < quantile(wtest[,3])[3] &  wtest[,4] < quantile(wtest[,4])[3], ]
+	#interesting<-wtest[wtest$cthtpv  >= wtest$cthppv,]
+	
+	#Plot boxplot based on selected statistics
+	interestingSecreted<-wtest[wtest$CC=="Secreted",]
+	interestingProteinOrtho<-wtest[wtest$CC=="ProteinOrtho",]
+	
+	interestingSecreted<-tail(interestingSecreted[order(interestingSecreted$cthpks),],5)
+	interestingProteinOrtho<-tail(interestingProteinOrtho[order(interestingProteinOrtho$cthpks),],5)
+	
+	interesting<-rbind(interestingSecreted,interestingProteinOrtho)
+	
+	
+	
+	a<-ggplot(dataProteinOrtho[dataProteinOrtho[["AA"]] %in% interestingProteinOrtho$aa, ] , aes(AA, prop))+geom_boxplot(aes(fill=type)) + scale_fill_npg()#+facet_wrap(~type+CC+AA,scale="free")
+	b<-ggplot(dataSecreted[dataSecreted[["AA"]] %in% interestingSecreted$aa, ] , aes(AA, prop))+geom_boxplot(aes(fill=type)) + scale_fill_npg()#+facet_wrap(~type+CC+AA,scale="free") 
+	multiplot(a,b,cols=2)
+	
+	
+	
+	
+	wtestSecreted<-wtest[wtest$CC=="Secreted",]
+	wtestSecreted<-#scale(wtestSecreted[c(-1,-8)],center=TRUE,scale=TRUE)
+	wtestSecreted<-as.data.frame(wtestSecreted)
+	wtestSecreted$CC=wtest$CC[wtest$CC=="Secreted"]
+	wtestSecreted$aa=wtest$aa[wtest$CC=="Secreted"]
+	
+	wtestProteinOrtho<-wtest[wtest$CC=="ProteinOrtho",]
+	#wtestProteinOrtho<-scale(wtestProteinOrtho[c(-1,-8)],center=TRUE,scale=TRUE)
+	wtestProteinOrtho<-as.data.frame(wtestProteinOrtho)
+	wtestProteinOrtho$CC=wtest$CC[wtest$CC=="ProteinOrtho"]
+	wtestProteinOrtho$aa=wtest$aa[wtest$CC=="ProteinOrtho"]
+	rbind(wtestSecreted,wtestProteinOrtho)
+	
+	wtestPlot<-NULL
+	wtestPlot$aa=wtest$aa[wtest$CC=="ProteinOrtho"]
+	wtestPlot$cthpPO=wtestProteinOrtho$cthpks
+	wtestPlot$cthpSE=wtestSecreted$cthpks
+	wtestPlot<-as.data.frame(wtestPlot)
+	
+	
+	wtestPlot$Family<-c(
+	 "Hydrophobic",
+	 "Other      ",
+	 "Negative   ",
+	 "Negative   ",
+	 "Hydrophobic",
+	 "Other      ",
+	 "Positive   ",
+	 "Hydrophobic",
+	 "Positive   ",
+	 "Hydrophobic",
+	 "Hydrophobic",
+	 "Polar      ",
+	 "Other      ",
+	 "Polar      ",
+	 "Positive   ",
+	 "Polar      ",
+	 "Polar      ",
+	 "Hydrophobic",
+	 "Hydrophobic",
+	 "Hydrophobic")
+	
+	wtestPlot$Class<-c(
+	"Aliphatic",
+	"Sulfur   ",
+	"Acidic   ",
+	"Acidic   ",
+	"Aromatic ",
+	"Aliphatic",
+	"Basic    ",
+	"Aliphatic",
+	"Basic    ",
+	"Aliphatic",
+	"Sulfur   ",
+	"Amidic   ",
+	"Aliphatic",
+	"Amidic   ",
+	"Basic    ",
+	"Hydroxyli",
+	"Hydroxyli",
+	"Aliphatic",
+	"Aromatic ",
+	"Aromatic ")    
+	
+	colorManual<-c("#fb61d7","#00b6eb","#00c094","#53b400","#c49a00","#f8766d","#a58aff")
+	
+	a<-ggplot(dataProteinOrtho[dataProteinOrtho[["AA"]] %in% interestingProteinOrtho$aa, ] , aes(AA, prop))+geom_boxplot(aes(fill=type)) + scale_fill_manual(values=colorManual)#+facet_wrap(~type+CC+AA,scale="free")
+	b<-ggplot(dataSecreted[dataSecreted[["AA"]] %in% interestingSecreted$aa, ] , aes(AA, prop))+geom_boxplot(aes(fill=type)) + scale_fill_manual(values=colorManual)#+facet_wrap(~type+CC+AA,scale="free")
+	
+	scatter<-ggplot(wtestPlot, aes(cthpPO,cthpSE,color=Class))+geom_point(aes(shape = Family,stroke=2), size = 7, show.legend = TRUE) + scale_color_manual(values=colorManual)+scale_shape_manual(values=c(0,1,2,5,6)) +geom_text(aes(label=aa))
+	
+	q<-plot_grid(plot_grid(a,b,nrow=2),scatter,ncol=2)
+  }
+  \label{code:Amino Acid Composition Bias Analysis}
+  \caption{HGTFinder commands}
+\end{listing}
+\fi
+
+
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=\linewidth]{./finalAA_Analysis.pdf}
+  \caption{\label{fig:AABIAS} BLA  } 
+\end{figure}
+
+
+
+\subsection{Potential for Secondary Metabolite}
+
+\ifcode
+\begin{listing}
+  \mint[breaklines,bgcolor=black,formatcom=\color{white},fontsize=\footnotesize]{shell}{
+#Get annotation
+parallel -j 8 "grep -w {} ../phiSp.PHISP.gff3 | smashAddProductToCDS.pl > {}.gff3" ::: `cut -f 1 ../phiSp.PHISP.gff3 | grep -v "#" | grep -vP "^$" | sort -u ` 
+
+#Get sequence
+parallel -j 8 "grep -w {} ../../phiSp.fasta -A 1 > {}.fa" ::: `cut -f 1 ../phiSp.PHISP.gff3 | grep -v "#" | grep -vP "^$" | sort -u `
+
+parallel -j 8 "seqret -sequence {}.fa -feature -fformat gff -fopenfile {}.gff3 -osformat genbank -auto -osname {} -osextension gb " ::: `ls *.fa | sed -r 's/.fa//g'`
+#Add product instead of note // Add it to CDS
+parallel -j 8 "sed -i -r 's/product/protein_id/' {}" ::: *.gb
+
+source ~/bin/as3/bin/activate
+parallel -j 8 " python ~/bin/AS3/antismash/run_antismash.py -c 8 --logfile {}.log --input-type nucl --smcogs --inclusive --borderpredict --verbose --taxon fungi --clusterblast --subclusterblast --knownclusterblast --asf --all-orfs {} -v " ::: *.gb
+
+#parsing of the data
+for i in `find . -name \*.1.final.gbk`; do perl ~/bin/parseSMASHGBK.pl -g $i; done | sort -k 1,1 -k 2,2g
+
+#for the other genomes we use ~/bin/launch.Antismash
+for i in horWer penChr phiScl sacCer schPom walIch walMel; do j=$i.fa; k=$i.gff3; printf "launch.Antismash $k $j\n"; done
+
+#!/bin/bash
+GFF=$1
+DIR=`echo $GFF | sed -r 's/.gff.+//'`
+echo "GFF:$GFF DIR:$DIR"
+#genome fasta file with 1sequence per line
+RMDBFA=$2
+echo "PREPROCESS GFF"
+mkdir -p $DIR
+parallel   -j 8 "grep -w {} $GFF > $DIR/{}.gff3" ::: `cut -f 1 $GFF | grep -v "#" | grep -vP "^$" | sort -u ` 
+echo "PREPROCESS SEQUENCE"
+#Get sequence
+parallel  -j 8 "grep -w {} $RMDBFA -A 1 > $DIR/{}.fa" ::: `cut -f 1 $GFF | grep -v "#" | grep -vP "^$" | sort -u`
+
+echo "CD $DIR"
+cd $DIR
+echo "CONVERT GFF TO GB"
+parallel  -j 8 "gff_to_genbank.py {}.gff3 {}.fa" ::: `ls *.fa | sed -r 's/.fa//g'`
+
+echo "START ANTISMASH"
+source ~/bin/as3/bin/activate
+parallel -j 3  "python ~/bin/AS3/antismash/run_antismash.py -c 8 --logfile {}.log --input-type nucl --smcogs --inclusive --borderpredict --verbose --taxon fungi --clusterblast --subclusterblast --knownclusterblast --asf --all-orfs {} -v " ::: *.gb
+#Get stat for phiSp
+for i in `find  ../../annotation/secondaryMetabolites/smash/ -name \*BGC.txt`; do printf $i"\n"; cat $i | cut -f 2 ; done | sort | uniq -c
+#Get stat for the other species
+Get coordinates from antismash
+for i in schPom debHan debFab canPar walIch sacCer penChr horWer phiScl; do printf $i"\n"; find $i -name \*BGC.txt | xargs -I {} cat {} >> $i"SMASHBCG.txt"; done
+find ../../annotation/secondaryMetabolites/smash/ -name  \*BGC.txt | xargs -I {} cat {} >> phiSp"SMASHBCG.txt" 
+#Convert it to gff3
+for i in *BCG.txt; do cat $i  | sed -r 's/_c[0-9]+//' | sed -r 's/ /_/g' | grep -v BGC | sed -r 's/\t0;/\t1;/' | sed -r 's/([0-9]);([0-9])/\1\t\2/' | perl -lane 'printf "$F[0]\tsmash\tsmash\t$F[3]\t$F[4]\t.\t+\t.\t$F[1]\n"' > $i.gff3; done
+#SMURF
+#Download smurf from mail attachment
+#cp BackBone to xxxxxBBG.txt
+#convert it to gff3
+for i in *BBG.txt; do cat $i | perl -lane '($start,$end,$strand)=($F[4]<$F[5]?($F[4],$F[5],"+"):($F[5],$F[4],"-")); printf "$F[2]\tsmurf\tsmurf\t$start\t$end\t.\t$strand\t.\t$F[6]\n"' | tail -n +2 > $i.gff3; done
+
+#Look at intersection
+for i in aspRub canPar debFab debHan horWer penChr phiSp phiScl sacCer schPom walIch walMel; do bedtools intersect -wa -wb -a $i"BBG.txt.gff3" -b $i"SMASHBCG.txt.gff3"; bedtools intersect -v -a $i"BBG.txt.gff3" -b $i"SMASHBCG.txt.gff3";  bedtools intersect -v -b $i"BBG.txt.gff3" -a $i"SMASHBCG.txt.gff3"; done
+   }
+  \label{code:smash}
+  \caption{Smash commands}
+\end{listing}
+\fi
+
+
+\begin{table}
+  \small
+  \begin{tabular}{|p{1.5cm}|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+    Secondary Metabolite Family& phiSp& phiScl&	aspRub& penChr&horWer&	 debFab& debHan& canPar&  sacCer&schPom&walIch&walMel\\
+    \hline                                     	               	      	                  
+    \hline                                     	               	      	                  
+    DMAT&	                 1&      0&	 3&	1&     	 0&   	  0&	0&      0&        0&	0&	0&	0\\
+    indole&	                 2&      0&	 4&	0&     	 1&   	  0&	0&      0&        0&	0&	0&	0\\
+    hybrid&	                 1&      3&	 0&	2&     	 0&   	  0&	0&      0&        0&	0&	0&	0\\
+    nrps&	                 23&     41&	 22&	28&    	 18&  	  0&	0&      0&        0&	1&	4&	3\\
+    NRPS-Like&	                 7&      7&	 7&	13&    	 9&   	  0&	0&      0&        0&	0&	2&	1\\
+    PKS&	                 9&      12&	 13&	23&    	 4&   	  1&	1&      1&        1&	0&	1&	1\\
+    PKS-Like&	                 2&      1&	 2&	1&     	 4&   	  1&	1&      1&        1&	0&	0&	0\\
+    cf\_fatty\_acid\_&	         4&      1&	 1&	1&     	 4&   	  2&	2&      2&        2&	2&	0&	0\\
+    cf\_putative&	         36&     40&	 54&	15&    	 24&  	  17&	21&     17&       9&	8&	11&	9\\
+    cf\_saccharide&	         0&      0&	 0&	0&     	 0&   	  1&	1&      1&        0&	0&	0&	0\\
+    other&	                 8&      5&	 4&	1&     	 13&  	  1&	1&      1&        1&	2&	1&	1\\
+    siderophore&	         0&      0&	 0&	1&     	 0&   	  0&	0&      0&        0&	0&	0&	0\\
+    terpene&	                 3&      2&	 3&	0&     	 3&   	  1&	2&      1&        1&	1&	1&	1\\
+    \hline                                     	               	      	                  
+    sum    &                     96& 	 112&  	113&     86&   	  80& 	  24&     29&    24&       15&     14&     20&     16\\
+    \hline
+  \end{tabular}
+  \caption{\label{tab:cluster} Secondary metabolite biosynthesis gene
+    clusters found in the twelwe genomes under studies with SMURF and SMASH. 
+    Overlapping predictions were resolved by keeping the SMURF predictions.}
+\end{table}
+
+
+{\phiSp} and {\phiScl} have a total of 96 and 112 annotated secondary
+metabolites backbone gene clusters (SMBGCs), respectively. They show a
+similar SMBGCs profile as {\aspRub}, which is a phylogenetic
+relative. The main difference between both \textit{phialosimplex}
+species is high number of nrps-related cluster in {\phiScl} compared
+to {\phiSp}. DMAT (smurf) and indole (smash) SGMBCs are present in
+{\phiSp} and {\aspRub} but absent in {\phiScl}.  
+
+
+\subsection{Detailed Analysis}
+\subsubsection{HOG Pathway}
+
+The genome of {\phiSp} was searched for homologues  of the high-osmolarity
+glycerol response signalling pathway from {\sacCer}~\cite{Bahn2007}, {\walIch}~\cite{Zajc2014} and
+\textit{Aspergillus}~\cite{Castro2014}. 
+
+
+\begin{table}
+  \begin{tabular}{|l|l|l|l|l|l|l|}
+    Species &{\aspRub}	        &        {\phiScl}     &      {\phiSp}        &   {\sacCer}     & {\walIch}      \\
+    Sho1    &EYE93144,1e-147	&PHISCL_08295,1e-147	&PHISP_07557,1e-144	&YER118C,0.0	&KUR62632,4e-28  \\
+    Sln1    &EYE94687,2e-18*	&PHISCL_09956,6e-15*	&PHISP_05099,3e-15*	&YIL147C,0.0	&EOR01469,2e-18* \\
+    Cdc42   &EYE93902,4e-118	&PHISCL_01735,6e-86	&PHISP_08179,7e-119	&YLR229C,2e-141	&EOR00654,1e-123 \\
+    Cdc24   &EYE92189,1e-39	&PHISCL_09747,6e-39	&PHISP_06763,3e-38	&YAL041W,0.0	&EOR03906,1e-40  \\
+    Ypd1    &EYE99886,3e-17	&PHISCL_09916,2e-21	&PHISP_03488,2e-20	&YDL235C,3e-89	&EOQ99342,2e-21  \\
+    Ste20   &EYE90445,0.0	&PHISCL_02057,0.0	&PHISP_05030,0.0	&YHL007C,0.0	&EOQ99703,0.0    \\
+    SSk1    &EYE93143,7e-60	&PHISCL_08297,1e-58	&PHISP_07559,8e-60	&YLR006C,0.0	&EOQ98783,3e-52  \\
+    Ste50   &EYE96463,2e-20	&PHISCL_04915,3e-19	&PHISP_05595,2e-19	&YCL032W,0.0	&EOR03947,7e-13  \\
+    Ste11   &EYE93420,5e-93	&PHISCL_09185,1e-95	&PHISP_00701,3e-93	&YLR362W,0.0	&EOQ99709,7e-92  \\
+    SSk2    &EYE95333,2e-146	&PHISCL_01269,2e-147	&PHISP_03935,4e-147	&YCR073C,0.0	&EOR00620,3e-120 \\
+    Pbs2    &EYE98904,3e-123	&PHISCL_06638,1e-122	&PHISP_07372,1e-67	&YJL128C,0.0	&EOR04233,1e-101 \\
+    Hog1    &EYE92398,0.0	&PHISCL_09066,0.0	&PHISP_02745,0.0	&YLR113W,0.0	&EOQ98833,0.0    \\
+    Skn7    &EYE91090,1e-46	&PHISCL_05564,4e-42	&PHISP_02412,2e-42	&YHR206W,0.0	&EOR04976,2e-46  \\ 
+    \hline\hline
+    PhkB    &EYE94256,0.0	&PHISCL_07220,0.0	&PHISP_00829,0.0	&YLR006C,2e-11*	&EOR01469,2e-45*  \\
+    CrzA    &EYE99449,0.0	&PHISCL_03951,0.0	&PHISP_02476,0.0	&YNL027W,4e-52	&EOR00160,2e-26  \\ 
+  \end{tabular}
+  \caption{\label{tab:halophile} }
+\end{table}
+
+\subsubsection{Compatible Solutes}
+
+
+
+
+\TODO{
+MA 6005 Phialosimplex Sp. Aspergillus salisburgensis
+MA      Phialosimplex Scl. Aspergilus sclerortialis
+MA 6032 Aspergillus 
+MA 6003 Aspergillus }
+
+\section{Discussion}
+%%In this study, for the first time, the transcriptome of a fungus shown
+%%to grow on toluene~\cite{Blasi2016} was repoducibly sequenced. 
+%%With the help of the transcriptomic data and a thorough comparative
+%%genomics analysis, genes previoulsy reported to play a role in
+%%metabolizing {\tol} in other fungi and bacteria~\cite{Parales2008}
+%%were identified and their expression levels during the toluene
+%%exposure were assessed. For each enzymes in the fungal
+%%toluene-degrading pathway described in~\cite{Parales2008} at least one
+%%ortholog was found. The genomic organization of these homologs in {\claImm} is
+%%highly interesting since five gene clusters involved in toluene
+%%degradation were identified. In the case of the subpathway of catechol
+%%oxidation, 4 out of 6 genes are clustered. While functional clusters
+%%are common in fungi~\cite{Cooper1996,Hittinger2004,Keller1997}, it is
+%%the first time that clusters related to toluene degradation are reported.  
+%%
+%%The comparison of the fungal and bacterial toluene-degradation
+%%pathways allowed to identify 11 genes in {\claImm} corresponding to 9
+%%bacterial genes involved in 8 reactions from \textit{P. putida} and
+%%\textit{P. mendocina}~\cite{Parales2008}. The fact that the homologs
+%%to bacterial enzymes involved in the toluene-degradation do not cover
+%%the full catabolism, might be an evidence that in a 
+%%toluene-contaminated environment {\claImm} and bacterial species might
+%%be co-metabolizing toluene in a way similar to what was shown for
+%%polyaromatic hydrocarbons~\cite{Peng2008}.  Among those 11 genes, four
+%%were classified as horizontally transfered from bacteria by HGTfinder,
+%%further underlining the close interplay between bacteria and the
+%%studied \textit{Cladophialophora}. While HGT are common between fungi
+%%and bacteria, they were only recently reported in the group of black
+%%yeasts, i.e. for {\exoDer}~\cite{Chen2014}. Especially interesting are
+%%CLAIMM\_02205 and CLAIMM\_02199, which apparently were transfered as a
+%%cluster. CLAIMM\_02205 is the only gene in the genome of {\claImm}
+%%that can convert Protocatechuate to Catechol. CLAIMM\_02199 is the
+%%only gene in {\claImm} that can catalyze the hydration of
+%%2-oxopent-4-eneoate into 4-hydroxy-2-oxovalerate. It is also
+%%interesting to observe that relation between degradation and
+%%opportunistic pathogenicity also holds in bacteria.
+%%
+%%While {\claImm} seems to have the enzymes necessary to degrade
+%%toluene, the use of this compound as sole carbon-source drives the
+%%fungus into an energy-saving state. Core processes
+%%like cellular amid metabolism, cellular respiration, energy-coupled
+%%proton transport, organic substance metabolism are negatively affected
+%%by the xenobiotics. Translation  is one of the most enriched GO term
+%%(fdr=\E{1.17}{46}) in the set of downregulated genes. This fits well
+%%with the repression of 17 tRNAs during toluene exposure. In
+%%contrast snoRNAs represent the only type of basal ncRNAs that are significantly
+%%upregulated in the {\tol} experiment. SnoRNAs play a key role as
+%%chaperone in the folding of mature rRNA, by binding to the
+%%ribosome~\cite{Watkins2012}. In \textit{Eschericiae coli}, toluene
+%%triggers the rapid disaggregation of ribosomes, either by denaturing
+%%the toluene or by triggering the release of rRNA degrading
+%%enzyme~\cite{Jackson1965}. Here the increased expression of snoRNAs
+%%might be interpreted as response to the destabilizing effect of
+%%toluene on the structure of mature or nascent rRNAs.
+%%
+%%Chaperones HSP20, HSP40 and HSP70, which are markers of
+%%cellular stress~\cite{Lindquist1988}, are either highly expressed or
+%%highly upregulated in the {\tol}-experiment. This fact, together with
+%%the overrepresentation of proteins involved in the transport of
+%%misfolded proteins, might indicate that toluene is having a negative
+%%impact on the protein-folding process. A similar protein-damage
+%%response was recently reported in the toluene degrading bacteria
+%%\textit{Pseudomonas putida S12}~\cite{Volkers2015}. Toluene exposure
+%%also lead to the overexpresion of genes harboring protein domains
+%%linked to DNA repair, like ku70/ku80 or rad14, indicating that DNA is
+%%being {\claImm} is damaged. This is in line with the recognized
+%%mutagenic properties of aromatic and other poly-aromatic
+%%compounds~\cite{Munoz2011,Singer1996}. 
+%%
+%%Toluene further triggers the expression of genes involved in the
+%%degradation of xenobiotic and detoxification, like Glyoxylase II and
+%%lutathione S-transferase as well as antioxidants, like ascorbate
+%%peroxidase carotenoid oxygenase. HppD, a key enzyme in the production
+%%of Pyomelanin, one of three types of melanin produced by the fungus,
+%%is upregulaed by a factor 79 when {\claImm} is exposed to toluene. It
+%%is the same type of melanin that was shown to be overexpressed when
+%%{\exoDer} is grown on skin~\cite{Poyntner2016}. Melanin is known to
+%%efficiently protect cells agains reactive oxygen
+%%species~\cite{Sichel1991}. Pyomelanin was recently shown to provide a
+%%considerable tolerance to hydrogen peroxide stress~\cite{Ahmad2016} in
+%%\textit{Ralstonia solanacearum}.
+%%
+%%Six genes belonging to the stress-induced MAPK pathway in fungi are
+%%upregulated in the {\tol} experiment. This signaling pathways is
+%%related to various kind of stress, among other oxidative
+%%stress~\cite{Bahn2007}. The overexpression of genes related to the
+%%MAPK pathway, damaged-DNA repair and melanin production strongly
+%%indicate that toluene is causing an oxidative burden on {\claImm}.
+%%This observation has already been reported in bacteria, where it is
+%%hypothesized that the solvent impede the correct electron transport,
+%%leading to an increase of reactive oxygen
+%%species~\cite{Dominguez2006}.
+%%
+%%Toluene increase cell wall fluidity in
+%%bacteria~\cite{Sikkema1995} while the exposure of {\sacCer} to ethanol
+%%was shown to have an impact on the composition of the lipid
+%%bilayer~\cite{Henderson2014}. In {\claImm}, 16 genes involved in
+%%chitin synthase, regulation,  modification, degradation as well as
+%%1.3-$\beta$-glucan synthesis and processing are repressed. This might
+%%be explained by the reduced growth rate of the fungus in toluene
+%%compared to glucose. {\claImm} ergosterol biosynthetic pathway exhibits
+%%three downregulated genes (Erg2, Erg5, Erg10) while Erg12, mevalonate
+%%kinase, is upregulated (See Supplementary Table 1). Still the content
+%%ergosterol in the fungus might increase through hydrolasation of
+%%ergosteryl oleate, since a homolgue of sterol esterase (TGL1) is
+%%upregulated by a factor 5 in the {\tol} experiment. This might help
+%%{\claImm} to stabilize its membrane, as it was previously shown that
+%%ergosterol composition of the lipid bilayer are highly correlated with
+%%ethanol resistance~\cite{Aguilera2006}.
+%%
+%%In conclusion, although \textit{C.immunda} shows strong evidence of
+%%cellular stress in presence of the toluene concentration used in our  
+%%experiments, the fungus is still one of the most efficient fungi in
+%%the complete mineralization of toluene~\cite{Blasi2016}. The
+%%hypothesis that the toluene degrading enzymes might be responsible of
+%%the success of black yeasts as pathogens due to the common chemical
+%%nature of toluene and neurotransmitters needs still to be
+%%demonstrated. The functional characterization of target mutants in
+%%those genes could help in shading light in this open question of black
+%%yeast ecology and pathogenesis.
+
+%%Nevertheless,
+%%its pathogenic nature impairs its direct use in biofilters.
+
+
+%%While {\claImm} seems to have the enzymes necessary to
+%%degrade toluene, the exposure to this xenobiotic drives the fungus
+%%into a stress state, leading to a dramatic transcriptome shift.
+
+
+
+
+
+
+\text{TODO} NEED TO WRITE A CONCLUSION PARAGRAPH
+
+%%
+%%
+%%
+%%
+%%
+%%along the
+%%stress-activated pathway 
+%%
+%%Inversely, {\claImm}
+%%shuts down large part of the basal metabolism
+%%
+%%\TODO{Trichothecene}
+%%Still all the other enzymes involved in
+%%the production of these three mycotoxins, 
+%%i.e. Tri7, Tri8, Tri11, Tri101, Tri13, and Tri16  are present in the
+%%genome of {\claImm}. It should be noted that in {\claImm}, in contrast
+%%to other trichothecene-producing fungi, the trichothecene-related
+%%enzymes are not clustered. A screening for mycotoxin produced by
+%%{\claImm} did not find any. Moreover none of the identified
+%%trichothecene-related genes were significantly regulated upon growth
+%%with toluene.
+%%
+%%
+%%\TODO{This may indicate
+%%that {\claImm} can to produce trichothecene but not
+%%trichothecene-derived toxins.}
+
+
+
+
+
+
+
+
+%%Total number of transcript
+%%cat exoDer.lncRNA.gff3 | perl ~/bin/addGeneToNCPasaAssemblies.pl >
+%%temp
+%%grep -P "\tmRNA\t" -c temp
+%%perl  ~/bin/convertOvelappingGeneToSpliceVariant.pl -f temp -g temp  | sed -r 's/CDS/exon/' > exoDer.lncRNAFinal.gff3
+%%Total number of genes
+%%perl ~/bin/convertOvelappingGeneToSpliceVariant.pl -f temp -g temp |
+%%grep -Pc '\tgene\t'
+%%
+
+
+%%\begin{center}
+%%  \begin{figure}
+%%    \includegraphics[width=\linewidth]{./geneEnrichment.eps}
+%%    \caption{\label{fig:geneEnrichment}}
+%%  \end{figure}
+%%\end{center}
+
+
+
+
+%%\section{results}
+%%\subsection{RNA-Seq-based genome re-annotation}
+%%\subsubsection{Transcript assembly}
+%%In order to better understand the transcriptome response of \exoDer,
+%%fungal cells were cultured on \TODO{...} and \TODO{...}. Three
+%%biological replicates were sequenced for both experimental
+%%conditions (Skin/Control). A total of 155 mio reads were mapped to the
+%%genome. A PCA showed that ~\ref{fig:}
+%%
+%%The current transcript annotation of \exoDer was updated by using RNA-Seq data.
+%%Transcripts were reconstructed either ab-initio with Trinity~\cite{Haas2013}
+%%or based on the alignment of reads with CUFFLINKS~\cite{Trapnell2012}
+%%and Trinity. PASA~\cite{Haas2003} was then used to 1) generate a
+%%comprehensive set of transcripts 2) to update the genome annotation
+%%of \exoDer 
+%%%(see Figure~\ref{fig:Workflow}) 
+%%3) detect new coding and non-coding transcripts.
+%%
+%%Out of the 9577 protein coding transcripts annotated in \exoDer, 3391 were
+%%not modified by PASA while 4168 new splice variants were detected (See
+%%Supplementary Table S1). In 18 cases two neighboring transcripts were
+%%merged into one (See Supplementary Table S1).
+%%Besides the PASA-predicted alternative splice variants, 2284 new
+%%transcripts 
+%%%grep -Po "\tmRNA\t" exoDer.newProtein.gff3 -c 
+%%that originates from 871 loci 
+%%%grep -Po "\tmRNA\t" exoDer.newProtein.gff3 -c 
+%%and that codes for proteins of at least 100 amino acids were predicted
+%%by Transdecoder~\cite{Haas2013} (see Supplementary Table S1).  No CDS
+%%from the newly annotated coding transcript overlapped with any of the
+%%annotated ncRNAs.  
+%%
+%%%% snakemake -d `pwd` -s `pwd`/Reannotation.Snakemake --stats snakemake.stats -j 100 exoDer.lncRNA.gff3 
+%%
+%%Further we looked at the presence of new non-coding transcripts by
+%%fetching all PASA assembled transcripts 1) that did not overlap with
+%%the updated protein coding-annotation, 2) that did not contain a
+%%pfam-domain) 3) that were not reported as coding by CPAT~\cite{Wang2013}
+%%(coding p-value$lt$0.001) and 4) that did not show sequence homology
+%%to SwissProt (Blastp p-value$gt$0.001). A total of 7778 non-coding
+%%transcripts 
+%%%cat exoDer.lncRNA.gff3 | perl ~/bin/addGeneToNCPasaAssemblies.pl | grep -P "\tmRNA\t" -c 
+%%%%
+%%coming from 4956 loci 
+%%%%perl ~/bin/addGeneToNCPasaAssemblies.pl < reAnnotation/exoDer.lncRNA.gff3 > temp && perl ~/bin/mapTranscriptToLocus.pl -f temp -g ../exoDer.fasta | sed -r 's/m.//' | fgrep -wf - temp | grep gene > exoDer.lncRNA.locus.gff3 && wc -l exoDer.lncRNA.locus.gff3
+%%were assembled (see Supplementary
+%%Table S1). Among them 40 overlapped with the set of de-novo predicted
+%%non-coding RNA.  
+%%%% snakemake -d `pwd` -s `pwd`/Reannotation.Snakemake --stats snakemake.stats -j 100 exoDer.noKnownFunc.gff3 
+%%Finally a total of 6630 transcripts 
+%%%% cat exoDer.noKnownFunc.gff3 | perl ~/bin/addGeneToNCPasaAssemblies.pl | grep -P "\tmRNA\t" -c 
+%%from 5769 loci were assembled that
+%%%% cat exoDer.noKnownFunc.gff3 | perl ~/bin/addGeneToNCPasaAssemblies.pl | perl ~/bin/mapTranscriptToLocus.pl -f /dev/stdin -g ../../exoDer.fasta | sort -u | wc -l
+%%could neither be considered as coding by Transdecoder nor classified
+%%as non-coding. 
+%%
+%%\subsubsection{Conserved Elements}
+%%We had a deeper look at conserved coding and non-coding elements. To
+%%this aim the genomes of 5 pathogenic fungi (\exoDer, \claImm, \fonPed,
+%%\horWer and \canAlb) were aligned with multiz~\cite{Blanchette:04a}.
+%%RNAz~\cite{Washietl2005} and RNAcode~\cite{Washietl2011} were
+%%then run on the multiple genomes alignment in order to detect non-coding
+%%and coding elements. A total of 11168 conserved regions covering
+%%58$\%$ of the genome were returned by the alignment pipeline. RNAz returned a
+%%total of 895 conserved non-coding loci with a P-score $> 0.9$. 683
+%%hits overlapped 681 protein coding genes (348 UTR, 711 UTR,and 348
+%%RNAz loci overlapped with UTRs. 182 elements overlapped with 
+%%non-coding transcripts, 30 with annotated non-coding RNAs and 89 hits
+%%were intergenic. Because RNAz hits have no strand information a single
+%%hit might overlap to transcript located on both strands.
+%%
+%%RNAcode predicted 24613 conserved coding elements with a p-value
+%%$<1e^{-3}$. Among them 23200 (94.2$\%$) mapped to annotated proteins,
+%%312 mapped to non-coding transcripts and 150 mapped to the list of
+%%transcripts that could not be strictly classified as coding or
+%%non-coding. 
+%%
+%%\subsubsection{Novel Protein Coding genes}
+%%With the help of the transcriptomic data and the previoulsy published
+%%genome annotation~\cite{Chen2014} a set of 871 new protein-coding
+%%loci were annotated in the genome. Given the genome size of \exoDer
+%%the total number of 10436 protein-coding loci is in-line with that of
+%%of \exoMes(29Mb,9121loci) , \exoSid(29Mb,10114 loci) and \exoSpi(32MB,
+%%12049 loci). 
+%%%% Loci new Protein
+%%%% cat exoDer.newProtein.gff3 | perl ~/bin/mapTranscriptToLocus.pl -f
+%%%% /dev/stdin -g ../exoDer.fasta | sort -u | fgrep -wf -
+%%%% exoDer.newProtein.gff3  > exoDer.newProtein.locus.gff3
+%%
+%%%%Get Protein sequence
+%%%%gff3_file_to_proteins.pl exoDer.newProtein.gff3 ../exoDer.fasta |
+%%%%cat -v | sed -r 's/\^\\/ /g' > exoDer.newProtein.faa
+%%%%
+%%
+%%%%BLAST coding against nr
+%%%%blastall -p blastp -d /media/work/share/database/nr -i exoDer.newProtein.faa -a 8 -m 8 -v 1 -b 1 >NewPblastpRes.csv
+%%%%cat NewPblastpRes.csv | perl -lane 'if($F[10]<=0.001){print}' | cut -f 1 | sort -u  | wc -l 
+%%%%cat NewPblastpRes.csv | perl -lane 'if($F[10]<=0.001){print}' | cut -f 1 | sort -u  | fgrep -wf - exoDer.newProtein.gff3 | perl ~/bin/mapTranscriptToLocus.pl -f /dev/stdin -g ../../exoDer.fasta | sort -u  | wc -l
+%%
+%%%%bedtools intersect -a ../exoDer.newProtein.locus.gff3 -b ../exoDer.ConservedRegion.bed -wa -wb | grep gene | cut -f 9 | sort -u > listOfGeneInConservedRegions.csv 
+%%684 gene loci overlapped with a genomic regions contained in the multiple genomes alignment. 
+%%The 2284 predicted protein-coding transcripts were also blasted against the nr-database. 
+%%578 proteins from 131 loci had a hit with a p-value $lt$ 0.001. 92 out
+%%of the 131 loci overlapped with regions of the multiple genomes
+%%alignment.
+%%%%cat ../exoDer.merged.tsv | grep asmbl | cut -f 1 | sort -u | wc -l
+%%%%cat ../exoDer.merged.tsv | grep asmbl | cut -f 1 | sort -u | fgrep -wf - ../exoDer.newProtein.locus.gff3 | grep gene| cut -f 9 | sort -u | wc -l 
+%%387 proteins from 133 loci were functionally annotated
+%%
+%%\TODO{Caro:check virtulence factors um gezielt nach der diffExp von
+%%  ausgewaehlten proteinen zu suchen}
+%%
+%%\subsubsection{New Non-Coding Transcripts}
+%%A total of 6630 new transcripts of unknown type (NNT)  was
+%%identified. 
+%%%%cat reAnnotation/exoDer.noKnownFunc.gff3 | perl -lane 'print $F[4]-$F[3]' | sort -k 1,1gr > nKFLength.csv
+%%%%
+%%Their sizes ranged from 218 nts to 8440 nts with a median length of
+%%923nts and 90$\%$ of the transcripts having a length $lt$ 2470 nts.  
+%%Interestingly three snoRNAs homolog to snosnR55, snosnR61 and
+%%SNORD14 are located in introns of a single NNT (see
+%%figure~\ref{fig:snoRNALncRNA}). 
+%%
+%%\begin{figure}
+%%  \includegraphics[width=0.4\linewidth]{./figures/snoRNAInLncRNAIntron.pdf}
+%%  \includegraphics[width=0.4\linewidth]{./figures/snoRNAInLncRNAIntronII.pdf}
+%%  \caption{\label{fig:snoRNALncRNA}}
+%%\end{figure}
+%%
+%%\begin{figure}
+%%  \includegraphics[width=0.7\linewidth]{./figures/longerU4.pdf}
+%%  \caption{\label{fig:longU4}}
+%%\end{figure}
+%%
+%%%%bedtools intersect -a exoDer.lncRNA.locus.gff3 -b exoDer.RNAz.gtf -wa -wb  | cut -f 18 | sort -u | wc -l 
+%%%%bedtools intersect -a exoDer.lncRNA.locus.gff3 -b exoDer.RNAz.gtf -wa -wb  | cut -f 9 | sort -u | wc -l 
+%%A total of 3515 NNT-encoding loci overlapped with conserved
+%%regions. Among them 186 overlapped with 195 RNAz predictions. 11 NNT-loci had at least two
+%%RNAz hits. An example can be seen in figure~\ref{fig:lncRNARNAz}.
+%%\begin{figure}
+%%  \includegraphics[width=0.7\linewidth]{./figures/lncRNARNAz.pdf}
+%%  \caption{\label{fig:lncRNARNAz}}
+%%\end{figure}
+%%
+%%%%bedtools intersect -a exoDer.lncRNA.locus.gff3 -b exoDer.RNAcode.gtf -wa -wb  | cut -f 18 | sort -u | wc -l 
+%%%%bedtools intersect -a exoDer.lncRNA.locus.gff3 -b exoDer.RNAcode.gtf -wa -wb  | cut -f 9 | sort -u | wc -l 
+%%282 NNT-encoding loci overlapped with 426 RNAcode predictions. 36 NNT had at least two
+%%RNAcode hits. %%An example can be seen in figure~\ref{fig:lncRNARNAz}.
+%%%%\begin{figure}
+%%%%  \includegraphics[width=0.7\linewidth]{./figures/lncRNARNAz.pdf}
+%%%%  \caption{\label{fig:lncRNARNAz}}
+%%%%\end{figure}
+%%
+%%\subsubsection{New Transcripts of Undetermined Type}
+%%A total of 7778 new non-coding transcripts (NUT) was identified. Their sizes
+%%ranged from 19 nts to 9192 nts with a median length of 307nts and
+%%90$\%$ of the transcripts having a length $lt$ 891 nts. 
+%%
+%%%%Get a locus gff3 for the unknown function rRNA
+%%%%perl ~/bin/addGeneToNCPasaAssemblies.pl < reAnnotation/exoDer.noKnownFunc.gff3 > temp && perl ~/bin/mapTranscriptToLocus.pl -f temp -g ../exoDer.fasta | sed -r 's/m.//' | fgrep -wf - temp | grep gene > exoDer.noKnownFunc.locus.gff3
+%%12 de-novo predicted ncRNAs overlap with 10 NUT-locus. 
+%%A single transcript overlaps four clustered snoRNAs that were
+%%previously described in~\cite{Jochl2008}. The
+%%transcription pattern indicates that snoRNAs might be expressed as a
+%%polycistronic transcript that is subsequently spliced to deliver the
+%%snoRNAs. 
+%%
+%%
+%%
+%%\subsection{Transcript Expression}
+%%%%#Copy gtf files
+%%%%cp exoDer.ncRNA.gtf exoDer.noKnownFunc.gtf exoDer.allProtein.gff3 exoDer.lncRNA.gtf exoDer.RNAz.gtf ../RNAseq/expressionLevel/
+%%%%
+%%%%#modify what has to be done
+%%%%
+%%%%#Prepare reference for rsem
+%%%%rsem-prepare-reference --gtf all.transcripts.gtf --star --star-path /home/htafer/bin/ -p 8 ../../exoDer.fasta exoDer
+%%%%
+%%%%#### Start expression quantification ###
+%%%%parallel -j 1 "rsem-calculate-expression --strand-specific -p 8 --star --star-path /home/htafer/bin {} exoDer {.}" ::: *.fastq
+%%%%
+%%%%##   Check most highly expressed  ##
+%%%%sort -k 7,7gr Skin_S1.genes.results | head -n 100 > Skin_S1TopExpressed.csv
+%%%%sort -k 7,7gr SkinControl_S1.genes.results | head -n 100 > SkinControl_S1TopExpressed.csv
+%%%%sort -k 7,7gr WT371W.genes.results | head -n 100 > WT371WTopExpressed.csv
+%%%%sort -k 7,7gr WT45C1W.genes.results | head -n 100 > WT45C1WTopExpressed.csv
+%%%%##    Get enrichments ##
+%%%%for i in *TopExpressed.csv; do cut -f 1 $i > $i.gene; done
+%%%%parallel --dryrun -j 8 'j=`echo {1} | sed -r "s/exoDer.ann.//"`; enrichmentStat.R -b {1} -d {2} -t ${j} -D /media/work/share/database/InterProscanDictionary.dat' ::: exoDer.ann.* ::: *.gene
+%%
+%%Functional enrichment of the 100 most highly expressed
+%%coding genes in the skin and control experiments was analysed. 
+%%Under the control conditions, genes with domains related to Band 7
+%%proteins (HMPREF1120\_07454, HMPREF1120\_01950, HMPREF1120\_06159) (fdr=0.001) and
+%%Histone-related proteins (HMPREF1120\_06310, HMPREF1120\_01816,
+%%HMPREF1120\_06252) were enriched. The 100 most highly expressed proteins in the skin
+%%experiment were related to Heat shock protein (HSP) 70 (HMPREF1120\_02626,
+%%HMPREF1120\_07756, HMPREF1120\_08142,fdr=0.002,3/5), phosphorylcholine
+%%metabolism (HMPREF1120\_09233, HMPREF1120\_04356, fdr=0.004, 2/2) and
+%%translation elongation (HMPREF1120\_08281, HMPREF1120\_0844, fdr=0.004,
+%%2/2). Phosphorylcoline is used by a wide array of prokaryotic and
+%%eukaryotic pathogens to hide from or modulate host responses to
+%%infection~\cite{Clark2013,Clark2012}. In \canAlb two members of the HSP70
+%%family are expressed on the cell surface and function as receptors for
+%%antimicrobial peptides~\cite{Sun2010}.
+%%
+%%
+%%
+%%\subsection{Differential Expression}
+%%\TODO{CARO}
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+%%
+
+\ifcode
+\renewcommand\listoflistingscaption{List of source codes}
+\listoflistings
+\fi
+
+
+\bibliographystyle{plain}
+%\bibliography{./temp}
+
+\bibliography{./collection}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
+
+
