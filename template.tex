@@ -36,7 +36,8 @@
 %---------
 % The option pdftex is for use with pdfLaTeX. If eps figures are used, remove the option pdftex and use LaTeX and dvi2pdf.
 
-
+%\usepackage{biblatex}
+%\addbibresource{mendeley_v2.bib}
 \newcommand{\textlower}{$<$}
 \newcommand{\TODO}[1]{\textbf{\color{red}{#1}}}
 \newcommand{\exoDer}{\textit{Exophiala dermatitidis}}
@@ -195,41 +196,47 @@ $^{1}$ \quad Extremophiles Center, Department of Biotechnology, University of Na
 %The order of the section titles is: Introduction, Materials and Methods, Results, Discussion, Conclusions for these journals: aerospace,algorithms,antibodies,antioxidants,atmosphere,axioms,biomedicines,carbon,crystals,designs,diagnostics,environments,fermentation,fluids,forests,fractalfract,informatics,information,inventions,jfmk,jrfm,lubricants,neonatalscreening,neuroglia,particles,pharmaceutics,polymers,processes,technologies,viruses,vision
 
 \section{Introduction}
-The introduction should briefly place the study in a broad context and highlight why it is important. It should define the purpose of the work and its significance. The current state of the research field should be reviewed carefully and key publications cited. Please highlight controversial and diverging hypotheses when necessary. Finally, briefly mention the main aim of the work and highlight the principal conclusions. As far as possible, please keep the introduction comprehensible to scientists outside your particular field of research. Citing a journal paper. And now citing a book reference.
+Saline and hypersaline environments like salt marshes, saline soil and water, the Dead Sea are home to a great fungal diversity~\cite{Gunde-Cimerman2014}. The vast majority are either as halotolerant or as extremely halotolerant, i.e. they can grow without NaCl but can also withstand salt concentration up to 30$\%$ ~\cite{Gunde-Cimerman2000}. Halophile fungi, that is fungi that need a given concentration of NaCl in order to survive, are uncommon~\cite{Gunde-Cimerman2000}. Currently only \walIch{}, \textit{Wallemia muriae}, \textit{Aspergillus baarnensis}, \textit{Aspergillus salinarium} and \aspRub{}~\cite{Kis-Papo2014-dn} are classified as halophile. Recently \phiSp{}, a fungus isolated from from historical wooden staircase in a salt mine in Austria~\cite{Martinelli2017AspergillusMorphology} was added to the list of halophile.
+
+The ability to survive osmotic stress requires several adaptation. \walIch whithstand high salt concentration by increasing the intracellular concentration of polyols in order to counteract the increased osmotic pressure, uses high-affinity K$^+$ transporters and thickens its cell-wall by a factor of three~\cite{Zajc2013}. \aspRub under high salt concentration increases the number of ion transporters, exhibit a higher proportion of acidic amino acid, restructures its cell-wall and uses Glycerol as compatible solute~\cite{Kis-Papo2014-dn}.
+Similar adaptation strategies are found in halotolerant species where the production of hydrophilic compounds, such as amino acids, sugar alcohols, soluble sugars to achieve osmotic equilibrium has been reported~\cite{Attaby2001,Plemenitas2014-et,Krauke2010-ed,Michan2013,Salmeron2011}.
+
+The mechanisms behind the adaptive capacities of halotolerant and halophilic fungi have only begun to be understood in recent years, with the first study of the transcriptome of \walIch{} dating from 2013~\cite{Zajc2013}. Only one other study on another halophile, \aspRub{}, has since been published~\cite{Kis-Papo2014-dn}. In order to extend knowledge in the field, we present the results of the sequencing of two genomes \phiSp{} a halophilic fungus and \phiScl{} a halotolerant fungus. The transcriptome of the two species exposed to two concentrations of salt was studied (5$\%$ 4and 20$\%$).  The genetic content as well as the response of the transcriptome were compared  to other know fungi in order to better understand which mechanisms are involved in salt resistance.\TODO{ADD HAUCH OF RESULTS}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 \subsection{Highly Complete Genome and Gene Set}
 The genome assemblies of {\phiSp} and {\phiScl} used for this study
-were seqeunced on the Ion PGM (See Methods). The {\phiSp} genome has a
-size of 21.9Mb and contains a total of 8895 protein-coding
-loci. {\phiScl} has a 27$\%$ larger genome (27.9Mb) with 27$\%$ more
-coding-genes (11307) compared to {\phiSp}.
-\subsection{Genes conservation and gene family evolution}
-The gene conservation pattern between {\phiSp}, {\phiScl} and a set of
-halophilic and halotolerant fungi listed in Table~\ref{tab:species}
-was studied with Proteinortho~\cite{Lechner2011} (See Methods). 
+were sequenced on the Ion PGM (See Methods). The assembled genome of {\phiSp} has a size of 21.9Mb and contains a total of 8895 protein-coding loci for a total of 1351 contigs (>500bp). 
+{\phiScl} has a 27$\%$ larger genome (27.9Mb) with 27$\%$ more
+coding-genes (11307) compared to {\phiSp} and 1704 contigs (See Supplementary Table).
+Among the 4406 highly conserved genes in Eurothiomycetes, 96$\%$ were found in \phiScl{} and 94$\%$ were present in \phiSp{}.   
+\subsection{Gene conservation and Gene family evolution}
+The gene conservation pattern between \phiSp{}, \phiScl{}, 2 halophiles, 6 halotolerant and 3 strains exhibiting no salt resistance was studied with ProteinOrtho~\cite{Lechner2011}. The two halophilic strains are \aspRub{} and \walIch{}, the 6 halotolerant strains are \penChr{}, \horWer{}, \canPar{}, \debFab{}, \debHan{} and \walMel{}  and the control strains were \sacCer{},\schPom{} and \ustMay{} (See Table~\ref{tab:species})
 
-
-\begin{table}
+\begin{table}[htbp]
   \begin{center}
     \small
     \begin{tabular}{|l|l|p{2cm}|l|p{5cm}|}
       \hline
       Species   & Salt concentration & Type & Reference & Osmoadaptation \\
       \hline
-      {\phiSp}  & 5-30$\%$,optimal at 20$\%$ & Halophilic &
+      {\phiSp}  & 5-30$\%$,optimal at 20$\%$ & Halophile &
       This publication &\\ 
       {\phiScl} & 0-20$\%$, optimal at 10$\%$ & Halotolerant & This publication &\\
       {\aspRub} & $>$10$\%$,  optimal at 18$\%$&  Halophilic
-      &\cite{Kis2014}&       expression of ion transporter, higher
+      &\cite{Kis-Papo2014-dn}&       expression of ion transporter, higher
       proportion of acidic amino acids gene duplication cell wall restructuring
       Glycerol\\
       {\penChr} & 0-18$\%$, optimal at 10$\%$ & Halotolerant
       &\cite{Attaby2001}& Glycerol \\
-      {\horWer} & 0-32$\%$, optimal 3-9$\%$ & Halophile   &
-      \cite{Plemenitas2015}& Polyols accumulation, alkali metal
+      {\horWer} & 0-32$\%$, optimal 3-9$\%$ & Halotolerant   &
+      \cite{Plemenitas2014-et}& Polyols accumulation, alkali metal
       transport , K$^+$/Na$^+$, cell wall restructuring\\
-      {\canPar} & 0-12$\%$, optimal 0 $\%$ & Halotolerant, xerotolerant & \cite{Krauke2010}&\\
+      {\canPar} & 0-12$\%$, optimal 0 $\%$ & Halotolerant, xerotolerant & \cite{Krauke2010-ed}&\\
       {\debFab} & 0-16$\%$, optimal 0 $\%$ & Halotolerant &
       \cite{Michan2013}& Polyols accumulation\\
       {\debHan} & 0-24$\%$, optimal 0 $\%$ & Halotolerant & \cite{Michan2013}& Polyols accumulation, sodium resistance\\
@@ -240,48 +247,129 @@ was studied with Proteinortho~\cite{Lechner2011} (See Methods).
       ions, hydrophobins\\
       {\walMel} & 0-27$\%$, optimal 0 $\%$ & Halotolerant,
       xerotolerant & ~\cite{Kuncic2010} & Cell wall thickening\\
-      {\ustMay} & 0-, optimal 0 $\%$ & Control & \cite{Salmern2011} &\\
+      {\ustMay} & 0-, optimal 0 $\%$ & Control & \cite{Salmeron2011} &\\
       \hline
     \end{tabular}
     \caption{\label{tab:species} List of genomes compared in this
       study. For each species, the name, salt tolerance, type of
-      tolerance, osmoadaptation and reference are listed}
-    
+      tolerance, osmoadaptation and reference are listed.}
   \end{center}
 \end{table}
 
-\begin{figure}[!h]
-  \centering
-  \includegraphics[width=0.9\linewidth]{./geophyloTree.pdf}
-  \caption{\label{fig:gainLossTree} Ultrametric tree with estimated
-    divergence time derived from the one-to-one ortholog multiple
-    sequences alignment and the divergence time between {\sacCer} and
-    {\walIch}. Gain and loss of families are represented by barplotshttps://www.overleaf.com/project/5bcf4218dfee4857f1fc3836
-    in the internal nodes. The \textbf{middle} represent the gain and
-    losses in the leaf nodes. The color correspond to the family
-    category while the shade is proportional to the magnitude in the
-    number of changes. \textbf{r.h.s} The ortholog conservation for
-    all 12  species studied is shown. Core genes, i.e. genes found in
-    all genomes, are shown in dark blue. The number of conserved
-    genes, i.e. genes found in at least two species, is shown in blue,
-    while species specific genes are shown in light-blue.
-    \TODO{Increase font size. Timetree analysis using the RelTime method A timetree inferred using the Reltime method [1][2] and Ordinary Least Squares estimates of branch lengths. The timetree was computed using 9 calibration constraints. The proportion of sites where at least 1 unambiguous base is present in at least 1 sequence for each descendent clade is shown next to each internal node in the tree. The analysis involved 13 amino acid sequences. All positions containing gaps and missing data were eliminated. There were a total of 37607 positions in the final dataset. Evolutionary analyses were conducted in MEGA X [3].}}
-\end{figure}
-
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.9\linewidth]{toPlot_specificToPhiSp.pdf}
     \caption{Graphical representation of the $-log_10(fdr)$ of the enriched enriched categories in Cazy, GO, IPR, Pfam and tcdb in the set of {\phiSp}-specific genes. Functional categories related to Chitin degradation, Protein folding, Transport and DNA integration are overrepresented}
     \label{fig:spec}
 \end{figure}
 
-\begin{figure}
+
+Proteinortho identified 1169 groups of orthologs present in all 13 species, 1091 genes specific to \phiSp{} and 2362 genes specific to \phiScl{}. The genes specific to \phiSp{} are enriched in functional terms related to protein refolding (GO:0042046, GO:0061077, HSP20, HSP70, HSP90, Clp, DnaJ.HSP40), DNA modification (GO:0015074, GO:0005727, GO:0046821, IPR01584, IPR025668, PF13683, GO:0005727, GO:0046821, TCDB 3.A.7), TRAP and ABC-transporter (IPR010656, IPR000515, TCDB 3.A.1, 2.A.56) and Chitin degradation (Cazy:GH23) (See Figure~\ref{fig:spec}). In \phiScl{} the set of species specific genes are functionally enriched in terms related to protein folding, heat shock protein 70 and HTH-binding domain protein (see Supplementary Figure 1 and Supplementary Table).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{./geophyloTree.pdf}
+  \caption{\label{fig:gainLossTree}  Timetree analysis using the RelTime method. A timetree inferred using the Reltime method~\cite{Tamura2018, Tamura2012} and Ordinary Least Squares estimates of branch lengths. The timetree was computed using 9 calibration constraints. The proportion of sites where at least 1 unambiguous base is present in at least 1 sequence for each descendent clade is shown next to each internal node in the tree. The analysis involved 13 amino acid sequences. All positions containing gaps and missing data were eliminated. There were a total of 37607 positions in the final dataset. Evolutionary analyses were conducted in MEGA X~\cite{Kumar2018}}
+\end{figure}
+
+A timetree was constructed from the multiple sequence alignments of the proteins shared by all 13 strains and time anchors extracted from  the TimeTree database~\cite{Kumar2017}. The timetree was consistent with the currently accepted taxonomy. Based on this tree \phiSp{} and \phiScl{} separated approximately 41MYA(+/-40MYA), approximately 20MY before the split between \debFab{} and \debHan{} and 40 MY after the split between \phiSp{}, \phiScl{} and \aspRub{}. Interestingly \phiSp{} and \phiScl{} exhibit the largest evolutionary rates, followed by the two Debaryomyces species.
+
+We used this tree to estimate the numbers of rapidly evolving annotation elements with CAFE~\cite{DeBie2006}.
+We looked at the rapid evolution of families of functional annotations for the carbohydrate enzymes (Cazy)~\cite{Cantarel2009}, general enzymes from the EggNog annotation~\cite{HuertaCepas2016}, Interproscan protein domains~\cite{Jones2014a}, KEGG pathways~\cite{Ogata1999}, proteolytic enzymes (Merops)~\cite{Rawlings2014}, Pfam protein domains~\cite{Finn2014a} and transporters from TCDB~\cite{Saier2006}. The internal node with the largest numbers of rapidly evolving annotation families is the one leading to the common ancestor of \textit{Hortaea} and \textit{Aspergillus} (\textit{leotiomyceta}) (See Figure~\ref{fig:cafe}, Table~\ref{tab:cafe} and Supplementary Table 1. CAFE reports 106 IPR and 105 Pfam rapidly evolving families. The most significantly expanding families are related to fungal-specific transcription factors (p-value 4.75e-19), Cytochrome P450E (p-value 1.127e-16) and DUF3468 (p-value 1.59e-15). The branch leading to \phiSp{} exhibits the largest contraction of gene families from all species analyzed: 91 IPR, 74 Pfam, 7 Cazy, 8 tcdb 1 Merops and 8 Enzyme families contracted significantly, which is certainly linked to the 27$^\%$ decrease in genome size compared to \phiScl{}. The amino acid polyamine organocation family exhibits the largest contraction, with 8 members being lost compared to the common ancestor of \phiScl{} and \phiSp{}. Interestingly the same contraction happens in \aspRub{} where 11 family members are lost. \TODO{Discuss APC impact on halotolerance. APC downregulated in P. indica https://link.springer.com/article/10.1007$\%$2Fs11274-015-1867-5}. Other contracting transporter families are the fatty acid transporter (TCDB:4C1, -7), the iron transporter family (2A108), the amino-acid transporter family (2A18, -5), the nucleobase symporter family (2A39, -3) and the oligopeptide transporter family (2A67, -3). Another family depleted in both \phiSp{} and \aspRub{} is the  aminoglycoside phosphotransferase, a bacterial antibiotic resistance protein (IPR002575) with a loss of 15 and 13 members, respectively. 
+
+A few annotation families showed an expansion in \phiSp{}. These families are related to the IVSP family (3A7 +9), the TRAP-C4 transporter (IPR010656 +6, PF06808 +6), the fungal cellulose binding domain (PF00734, +5), the integrase catalytic core (IPR001584), cutinase (PF01083), sodium:bile-acid symporter /arsenical resistance protein Acr3 (PF01758 +2) and secretory lipase (PF03583 +2). The increase in cellulose degrading ability due to fungal cellulose binding domain~\cite{Gilkes1991} and the cutinase~\cite{Sweigard1992} is clearly related to the wooden environment where \phiSp{} has been found. Proteins belonging to the PF01758 family confers Arsenic resistance by extrusion from cells~\cite{Fu2009}.        
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{over_under_final.pdf}
+    \includegraphics[width=0.9\linewidth]{cafeFinal.pdf}
+    \caption{\label{fig:cafe} \textbf{l.h.s} Phylogenetic tree with the internal annotated with their ID and the number of families showing expansion and contraction for the annotation element KEGG, Cazy, tcdb, Enzyme and Merops. {r.h.s} Expansion and contraction counts for the tip of the tree. The color opacity is proportional to the number of contracting/expanding families. The P and M suffix stand for expansion and contraction, respectively.}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{\label{tab:cafe}
+Table containing the number of significantly expanded and compressed family along the tree. The internal node ID corresponds to the node ID shown in Figure~\ref{fig:cafe}. Each annotation category contains the number of significantly expanding (l.h.s) and contracting families (r.h.s).}
+\centering
+\small
+\begin{tabular}{llrrrrrrrrrrrrrr}
+
+node & node & Cazy & Enzyme & IPR &  KEGG & Merops & Pfam & tcdb\\
+\hline
+<11> & I & 14 / 0 & 11 / 0 & 106 / 0 & 8 / 0 & 3 / 0 & 106 / 0 & 6 / 0\\
+<13> & I & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 & 0 / 0 / 0\\
+<15> & I & 0 / 1 & 0 / 0 & 8 / 6 & 0 / 0 & 1 / 0 & 5 / 6 & 0 / 0\\
+<17> & I & 0 / 0 & 0 / 0 & 8 / 1 & 0 / 0 & 0 / 0 & 6 / 1 & 0 / 0\\
+<19> & I & 0 / 0 & 0 / 1 & 5 / 3 & 0 / 0 & 0 / 0 & 3 / 2 & 0 / 0\\
+<1> & I & 0 / 0 & 1 / 1 & 4 / 3 & 0 / 0 & 0 / 0 & 1 / 3 & 0 / 1\\
+<21> & I & 0 / 0 & 0 / 0 & 4 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 1 / 0\\
+<3> & I & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0\\
+<5> & I & 0 / 2 & 1 / 4 & 6 / 178 & 2 / 0 & 0 / 0 & 5 / 12 & 1 / 1\\
+<7> & I & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0 & 0 / 0\\
+<9> & I & 1 / 0 & 1 / 0 & 57 / 0 & 0 / 0 & 1 / 0 & 25 / 0 & 1 / 0\\
+\aspRub<8> & T & 1 / 4 & 4 / 2 & 101 / 16 & 1 / 2 & 0 / 3 & 18 / 22 & 1 / 5\\
+\canPar<20> & T & 0 / 0 & 0 / 1 & 14 / 5 & 0 / 0 & 1 / 1 & 6 / 7 & 1 / 0\\
+\debFab<18> & T & 2 / 1 & 2 / 1 & 21 / 18 & 3 / 0 & 0 / 1 & 15 / 13 & 1 / 3\\
+\debHan<16> & T & 1 / 1 & 2 / 0 & 17 / 4 & 0 / 0 & 2 / 1 & 11 / 3 & 1 / 2\\
+\horWer<12> & T & 9 / 0 & 4 / 0 & 56 / 38 & 7 / 0 & 4 / 0 & 62 / 0 & 6 / 0\\
+\penChr<10> & T & 10 / 0 & 4 / 0 & 179 / 1 & 3 / 1 & 4 / 0 & 80 / 2 & 7 / 0\\
+\phiScl<6> & T & 9 / 1 & 10 / 2 & 65 / 5 & 6 / 0 & 3 / 1 & 77 / 6 & 8 / 2\\
+\phiSp<4> & T & 0 / 7 & 1 / 8 & 4 / 91 & 0 / 6 & 1 / 1 & 6 / 74 & 2 / 8\\
+\sacCer<14> & T & 3 / 0 & 2 / 0 & 16 / 3 & 1 / 0 & 1 / 0 & 12 / 10 & 1 / 0\\
+\schPom<22> & T & 0 / 0 & 0 / 0 & 7 / 16 & 0 / 1 & 0 / 0 & 3 / 20 & 0 / 2\\
+\ustMay<24> & T & 0 / 0 & 0 / 0 & 2 / 38 & 1 / 0 & 0 / 0 & 3 / 0 & 0 / 0\\
+\walIch<2> & T & 0 / 0 & 0 / 0 & 1 / 0 & 0 / 0 & 0 / 0 & 1 / 1 & 0 / 0\\
+\walMel<0> & T & 0 / 0 & 0 / 0 & 1 / 0 & 0 / 0 & 0 / 0 & 1 / 1 & 0 / 0\\
+\hline
+\end{tabular}
+\end{table}
+
+The over- and underrepresented annotation terms between two or more fungal genomes were alternatively studied by comparing the occurence with the help of chi-squared tests. Fungi were classified as Control (C) (\sacCer{}, \schPom{}, \ustMay{}), halophile (HH) (\walIch{}, \aspRub{}, \phiSp{}) and halotolerant (H) (\phiScl{}, \horWer2{}, \walMel{}, \penChr{}, \debFab{}, \debHan{}, \canPar{}). 
+\phiSp{} compared to \phiScl{} has significantly less MFS-transporters (TCDB 2A1 2.29e-06, GO:0055085 0.0047) and aminoglycoside phosphotransferase (IPR002575 3.41e-4). With respect to \aspRub{}, \phiSp{} exhibits a depletion of MFS transporters (TCDB 2A1 0.0088, GO:0005215 1.8e-04), oxidoreductase-activity (GO:0016491 3.88e-06, GO:0016620 0.0020, GO:0016740), metal binding (GO:0008270 3.62e-12, GO:0046872 1.73e-08) and nucleotide binding (GO:0000166 7.2e-04, GO:0007264 0.0018). A similar pattern is seen when considering \phiSp{} against the other halophile fungus \walIch{}. The former is depleted in nucleotide binding, protein binding, metal binding, cell wall constituents and hydrophobin (IPR001338 1.4e-04) (See Supplementary Table and Figure~\ref{fig:ovun}). Still it is enriched in terms related to oxidation-reduction processes (GO:0005506, GO:0016705, GO:0016705), transcription factors (GO:0000981, IPR01138) and transporters (MFS, APC).
+In comparison with \horWer2{}, \phiSp{} is depleted in MFS transporters but is enriched in TRAP transporter (TCDB 2A56).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{over_under.pdf}
     \caption{\label{fig:ovun} Heatmap of the $-log(fdr)$ of the significantly enriched or depleted functional annotations {\phiSp}. 
     \textbf{A} Enriched functional terms in {\phiSp} compared to {\phiScl}, {\aspRub}, {\walIch}, the set of halophile \textit{H}, halotolerant \textit{H} and control \textit{C} fungi. Enrichment found in HH vs H, HH vs C and H vs C were also studied. \textbf{B} Depleted functional terms in {\phiSp} for the same comparisons as in \textbf{A}.}
 \end{figure}
 
+With regard to the group of salt intolerant fungi, \phiSp{} is depleted in genes involved in translation, metal ion binding, and chitinase, while it contains significantly more genes related to oxidation-reduction processes, transcription, MFS transporters and cellulose degradation. It should be noted that MFS are significantly overrepresented in the groups of halophile and halotolerant fungi when compared to the control group, but that the set of halophile fungi is depleted in MFS when compared to the class of halotolerant fungi (See Supplementary Table 1 and Figure~\cite{fig:ovun}).
+
+
+
+
+The protein amino-acid composition of the C,H and HH groups for the set of ortholog genes and for the set of exported proteins was compared 
+(See Figure~\ref{fig:AABIAS} and Supplementary Table 1). With regard to the control group, the conserved proteins in halophile fungi are significantly enriched in Glycine, Proline and Arginine and depleted in Isoleucine and Lysine. \TODO{Redo analysis on secreted protein}.  
+
+
+%\subsection{Amino acid enrichment}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{AAAnalysis.pdf}
+    caption{\label{fig:AABIAS} Bias in amino-acids distribution between the set of control, halotolerant and halophile fungi. \textbf{l.h.s} Boxplot representing the distribution AA for the 5 AA with the most significant bias between the control and halophile group  for the set of conserved(top) and secreted proteins (bottom). \textbf{r.h.s} of the $-log(fdr)$ of the significantly enriched or depleted functional annotations {\phiSp}. 
+    \textbf{A} Enriched functional terms in {\phiSp} compared to {\phiScl}, {\aspRub}, {\walIch}, the set of halophile \textit{H}, halotolerant \textit{H} and control \textit{C} fungi. Enrichment found in HH vs H, HH vs C and H vs C were also studied. \textbf{B} Depleted functional terms in {\phiSp} for the same comparisons as in \textbf{A}.}
+\end{figure}
+
+\subsection{Differential expression}
+In \phiScl{} 
+
+
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{phiScl_SALT_summary.pdf}
+    \caption{\label{fig:phiSclUpDown} Heatmap of the $-log(fdr)$ of the significantly enriched or depleted functional annotations {\phiSp}. 
+    \textbf{A} Enriched functional terms in {\phiSp} compared to {\phiScl}, {\aspRub}, {\walIch}, the set of halophile \textit{H}, halotolerant \textit{H} and control \textit{C} fungi. Enrichment found in HH vs H, HH vs C and H vs C were also studied. \textbf{B} Depleted functional terms in {\phiSp} for the same comparisons as in \textbf{A}.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{phiSp_SALT_summary.pdf}
+    \caption{\label{fig:phiSclUpDown} Heatmap ohttps://www.overleaf.com/project/5bcf4218dfee4857f1fc3836f the $-log(fdr)$ of the significantly enriched or depleted functional annotations {\phiSp}. 
+    \textbf{A} Enriched functional terms in {\phiSp} compared to {\phiScl}, {\aspRub}, {\walIch}, the set of halophile \textit{H}, halotolerant \textit{H} and control \textit{C} fungi. Enrichment found in HH vs H, HH vs C and H vs C were also studied. \textbf{B} Depleted functional terms in {\phiSp} for the same comparisons as in \textbf{A}.}
+\end{figure}
 
 This section may be divided by subheadings. It should provide a concise and precise description of the experimental results, their interpretation as well as the experimental conclusions that can be drawn.
 \begin{quote}
@@ -374,7 +462,7 @@ The text continues here.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
-
+\TODO{Discussion of \phiSp{} Figure~\ref{fig:spec} specific genes}
 Authors should discuss the results and how they can be interpreted in perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -475,9 +563,9 @@ All appendix sections must be cited in the main text. In the appendixes, Figures
 % References, variant B: external bibliography
 %=====================================
 \externalbibliography{yes}
-\bibliography{Definitions/collection}
-\bibliography{mendeley_v2}
-
+%%\bibliography{Definitions/collection}
+\bibliography{Definitions/mendeleyv2}
+%\addbibresource{mendeleyv2.bib}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
 \sampleavailability{Samples of the compounds ...... are available from the authors.}
